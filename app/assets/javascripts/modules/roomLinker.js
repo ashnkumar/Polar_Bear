@@ -2,6 +2,16 @@ function RoomLinker(){
   var roomPath = $(location).attr('pathname').split('/').pop();
   this.roomAddress = 'https://luminous-fire-2873.firebaseio.com/room' + roomPath
   this.firebaseServer = new Firebase(this.roomAddress)
+  var connectedRef = new Firebase("https://luminous-fire-2873.firebaseio.com/.info/connected");
+
+  connectedRef.on("value", function(snap) {
+
+    if (snap.val() === true) {
+      console.log("connected");
+    } else {
+      console.log("not connected");
+    }
+  });
 }
 
 RoomLinker.prototype = {

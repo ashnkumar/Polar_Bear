@@ -3,5 +3,7 @@
   <%= link_to  "Room name: #{room.name}", room_path(room.id), class: "room_info", data: {temp: "#{room.id}"} %><br>
 <% end %>
 <br>
-
 <%= link_to  "CREATE A ROOM", new_room_path %>
+<span id="homepage-flag" style="display: none" />
+
+

@@ -5,6 +5,8 @@ $('document').ready(function(){
     console.log("the fails") // BUGBUG
   }
 
-  var roomLinker = new RoomLinker
-  roomLinker.bindButtons()
+  if($("#homepage-flag").length == 0) {
+    var roomLinker = new RoomLinker
+    roomLinker.bindButtons()
+  }
 });
