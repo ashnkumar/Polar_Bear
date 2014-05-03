@@ -1,8 +1,17 @@
 function User(){
-
+  this.userPosition = this.setUserGeoLocation()
 }
-User.prototype = {
 
+User.prototype = {
+  setUserGeoLocation: function() {
+    navigator.geolocation.getCurrentPosition(this.accessPosition.bind(this));
+  },
+  accessPosition: function(position) {
+    this.userPosition = position;
+  },
+  setUserChatRoom: function() {
+    //figure out firebase url of current room
+  }
 }
 
 
@@ -14,9 +23,6 @@ function UserController(model, view) {
 }
 
 UserController.prototype = {
-  initializeUser: function() {
-
-  }
 }
 
 
@@ -29,3 +35,4 @@ function UserView() {
 UserView.prototype = {
 
 }
+
