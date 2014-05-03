@@ -4,4 +4,7 @@ $('document').ready(function(){
   } else {
     console.log("the fails") // BUGBUG
   }
+
+  // instantiate user controller to start the room session
+  chatRoom()
 });
