@@ -1,7 +1,17 @@
+BASE_URL = 'https://luminous-fire-2873.firebaseio.com/'
 $('document').ready(function(){
-  if ("geolocation" in navigator){
-    navigator.geolocation.getCurrentPosition(geoHelper.success, geoHelper.failure, geoHelper.defaultOps)
-  } else {
-    console.log("the fails") // BUGBUG
-  }
+  PolarBear.initialize()
 });
+
+PolarBear = {
+  initialize: function(){
+    this.prepareUsersMVC()
+  },
+
+  prepareUsersMVC: function(){
+    var userView = new userView()
+    var user = new User()
+    var userController = new UserController(user, userView)
+    userController.initializeUser()
+  }
+}
