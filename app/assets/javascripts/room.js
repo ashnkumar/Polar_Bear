@@ -27,5 +27,12 @@ function RoomView(roomDomSelectors){
 }
 
 RoomView.prototype = {
+  // drawChatRoom: function(chatRoom) {
+  //   var room_stuff = {room: chatRoom}
+  //   $.ajax({
+  //     type: 'get',
+  //     url: '/rooms/1',
 
+  //   })
+  // }
 }

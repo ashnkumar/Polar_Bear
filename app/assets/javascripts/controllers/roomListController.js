@@ -19,6 +19,7 @@ RoomListController.prototype = {
 
   summonRooms: function(){
     var rooms = this.model.returnRooms( this.model.database )
+    debugger
     this.view.drawRoomList(rooms)
   },
 
