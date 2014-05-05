@@ -60,12 +60,17 @@ $resources-red:      #B61634;
 $about-purple:       #7604CB;
 $categories-blue:   #006A9F;
 
+$polar-grey: 				#999389;
+$polar-white: 			#FFFDFC;
+$polar-light: 			#CCC4B5;
+
 
 
 
 /*********************
 TYPOGRAPHY
 *********************/
+$banner:							"Droid Serif", serif;
 $body_copy:					"Droid Sans", sans-serif;
 $sans-serif:        "Abel", Helvetica, Arial, sans-serif;
 $serif:             "Georgia", Cambria, Times New Roman, Times, serif;
@@ -168,6 +173,13 @@ BOX SIZING
 
 
 /*********************
+ATTEMPT TO CENTER BUTTONS
+*********************/
+
+
+
+
+/*********************
 BUTTONS
 *********************/
 
@@ -176,7 +188,7 @@ BUTTONS
 	border: 1px solid darken($link-color, 13%);
 	border-top-color: darken($link-color, 7%);
 	border-left-color: darken($link-color, 7%);
-	padding: 4px 12px;
+	// padding: 4px 12px;
 	color: $white;
 	display: inline-block;
 	font-size: 11px;
