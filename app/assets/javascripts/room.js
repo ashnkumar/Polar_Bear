@@ -65,7 +65,6 @@ RoomView.prototype = {
           var template = Handlebars.compile(data)
           $(".room-list").html(template(roomName));
           $(".room-list").attr("class", "chatroom");
-          console.log("sup")
           $.event.trigger("ajax-back")
        })
     }
