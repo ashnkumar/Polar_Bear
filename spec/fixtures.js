@@ -1,30 +1,36 @@
 var database = {
     "room1": {
-        "-JLzcNu3FpHTEDu4ZkhZ": {
-            "name": "Bo's house",
-            "text": "DOWN"
+        "-JLzcNu3FpHTEDu4Zk3Z": {
+            "user_token": "Bo's house",
+            "message": "DOWN"
         },
-        "ashwin": "hey this is room 1"
     },
     "room2": {
-        "charles": "this is charles in room 2!"
+        "-JLzcNu3FpHTEDu4ZkuZ": {
+            "user_token": "Bo's house",
+            "message": "DOWN"
+        },
+        "-JLzcNu3FpHTEDu4ZdhZ": {
+            "user_token": "Bo's house",
+            "message": "DOWN"
+        },
     },
     "skippers": {
         "-JLzkbCXPmh56rlCpGC6": {
-            "name": "NachoProblem",
-            "text": "sup"
+            "user_token": "NachoProblem",
+            "message": "sup"
         },
         "-JLzl1pLkKOlXssnvpuT": {
-            "name": "NachoProblem",
-            "text": "polar bear is not the bomb"
+            "user_token": "NachoProblem",
+            "message": "polar bear is not the bomb"
         },
         "-JLzlcaUOOHvKolc2W9N": {
-            "name": "Rori",
-            "text": "Its nacho problem girl"
+            "user_token": "Rori",
+            "message": "Its nacho problem girl"
         },
         "-JLzmNr2NZbrzkppfjI-": {
-            "name": "Rori",
-            "text": "Ashwins rockin it"
+            "user_token": "Rori",
+            "message": "Ashwins rockin it"
         }
     }
 }

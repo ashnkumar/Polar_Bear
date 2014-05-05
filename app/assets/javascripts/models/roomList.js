@@ -1,4 +1,4 @@
-function RoomList(name) {
+function RoomList() {
   console.log('creating cusom event...')
   new CustomEvent('gotData')
   this.dataRef = new Firebase(BASE_URL);

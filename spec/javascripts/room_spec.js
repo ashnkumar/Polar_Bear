@@ -1,0 +1,4 @@
+describe("Room Object", function(){
+
+
+})
