@@ -25,7 +25,9 @@ var cookieFactory =(function(){
 }
 
   var _getValue = function(name){
-    var value = ":" + document.cookie;
+    var cookieString = document.cookie.split(" ")[1]
+    //var value = ":" + document.cookie;
+    var value = ":" + cookieString;
     console.log(value)
     var parts = value.split(":" + name + "=");
     console.log(parts[1].split(':'))
@@ -34,6 +36,7 @@ var cookieFactory =(function(){
 
 
   return {
+    createToken: _createUserToken,
     createCookie: _createCookie,
     getValue: _getValue,
   }
