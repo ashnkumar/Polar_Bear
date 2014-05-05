@@ -3,6 +3,10 @@ class RoomsController < ApplicationController
 
   end
 
+  # def landing_page
+
+  # end
+
   def show
     render :show, layout: false
   end
