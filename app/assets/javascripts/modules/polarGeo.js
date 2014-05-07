@@ -51,7 +51,9 @@ var geoHelper = (function(){
       $.event.trigger("geoDataReceived")
       cookieFactory.createCookie(position.coords.latitude, position.coords.longitude)
   }
-  var _failure = function(position){ alert("Sorry, we couldn't find you. You need to allow geolocation to use PolarBear.") }
+  var _failure = function(position){
+    alert("Sorry, we couldn't find you. You need to allow geolocation to use PolarBear.")
+  }
 
   return {
     failure: _failure,
