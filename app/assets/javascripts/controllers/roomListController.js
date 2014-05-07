@@ -8,8 +8,10 @@ RoomListApp.RoomListController.prototype = {
     $(document).on('gotFirebaseRoomsData', this.summonRooms.bind(this) )
     $('.room-list').on("click", ".individual_room", this.handleUserRoomAssignment.bind(this))
     $(document).on('gotLocations', this.updateGeoLocation.bind(this))
+
     $('#create_room').on("click", function() {
-      this.createChatRoom(firebaseHelper.createRoom())
+      var roomName = basicHelper.makeRandomRoomName()
+      this.triggerNewChatRoom(roomName)
     }.bind(this))
   },
   updateGeoLocation: function(e, eventData) {
@@ -26,24 +28,19 @@ RoomListApp.RoomListController.prototype = {
 
     this.view.drawRoomList(activeRooms)
   },
-  getInfoFromChatroom: function(roomPath){
 
-    firebaseHelper.getFirebaseUserLocations(roomPath)
-  },
-  createChatRoom: function(roomPath){
-    this.sendUserToChatroom(roomPath)
-  },
-  sendUserToChatroom: function(roomPath){
-    var firebaseRoomUrl = BASE_URL + roomPath
-    $.event.trigger("readyToMakeRoom", roomPath)
+  getInfoFromChatroom: function(roomName){
+    firebaseHelper.getFirebaseUserLocations(roomName)
   },
 
-  sendInfoToChatRoom: function(roomPath) {
-    // if(Object.userLocations.keys < 3) {
-      firebaseHelper.createFirebaseUserLocations({
-        roomPath: roomPath
-      })
-    // }
+  triggerNewChatRoom: function(roomName){
+    $.event.trigger("readyToMakeRoom", roomName)
+  },
+
+  sendInfoToChatRoom: function(roomName) {
+    firebaseHelper.createFirebaseUserLocations({
+      roomName: roomName
+    })
   },
 
   handleUserRoomAssignment: function() {

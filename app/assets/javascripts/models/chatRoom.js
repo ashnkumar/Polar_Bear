@@ -1,11 +1,21 @@
-ChatRoomApp.Room = function(chatRoomUrl, roomPath){
+ChatRoomApp.Room = function(chatRoomUrl, roomName){
   this.chatRoomUrl = chatRoomUrl
+  this.roomName = roomName
   this.firebaseServer = firebaseHelper.createFireBase(chatRoomUrl)
-  this.assignUserToRoom(chatRoomUrl, roomPath)
+  this.assignUserToRoom(chatRoomUrl, roomName)
 }
 
 ChatRoomApp.Room.prototype = {
-  assignUserToRoom: function(chatRoomUrl, roomPath){
-    firebaseHelper.setUserToRoom(chatRoomUrl, roomPath)
+  assignUserToRoom: function(chatRoomUrl, roomName){
+    firebaseHelper.setUserToRoom(chatRoomUrl, roomName)
+  },
+
+
+  setUpNewChatRoom: function() {
+  	
   }
+
+
+
+  
 }

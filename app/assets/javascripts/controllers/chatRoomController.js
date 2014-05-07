@@ -24,11 +24,4 @@ ChatRoomApp.RoomController.prototype = {
     $(document).on('ajax-back', this.bindMessageListeners.bind(this) )
   },
 
-  createNewRoom: function() {
-
-  }
-
-
-
-
 }

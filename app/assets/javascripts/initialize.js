@@ -3,7 +3,7 @@ ROOM_LIST_PATH = BASE_URL + 'room_list/'
 
 $('document').ready( function(){
   PolarBear.initialize();
-} );
+});
 
 PolarBear = {
   initialize: function(){
@@ -21,7 +21,6 @@ PolarBear = {
        $(".other_stuff").html(data);
      })
   },
-
 
   checkGeoLocation: function(){
     if(navigator.geolocation){
@@ -43,9 +42,8 @@ PolarBear = {
     var self = this;
 
     new CustomEvent('readyToMakeRoom', {'chatRoomUrl': ''})
-    $(document).on('readyToMakeRoom', function(event, roomPath) {
-      var chatRoomUrl = BASE_URL + roomPath
-      self.prepareRoomMVC(chatRoomUrl, roomPath)
+    $(document).on('readyToMakeRoom', function(event, roomName) {
+      self.prepareRoomMVC(roomName)
     })
   },
 
@@ -60,16 +58,20 @@ PolarBear = {
     roomListController.listeners()
   },
 
-  prepareRoomMVC: function(chatRoomUrl, roomPath){
+  prepareRoomMVC: function(roomName){
     var roomDomSelectors = {
       room: '.room',
       roomTemplate: '#room-template'
     }
     var roomView = new ChatRoomApp.RoomView(roomDomSelectors)
-    var room = new ChatRoomApp.Room(chatRoomUrl, roomPath)
+    var room = new ChatRoomApp.Room(roomName)
     var roomController = new ChatRoomApp.RoomController(room, roomView)
-    var roomName = {name: roomController.model.chatRoomUrl}
-    roomController.drawRoom(roomName)
+
+    roomController.draw
+
+    var chatRoomUrl = BASE_URL + roomName
+    var roomNameObject = {name: chatRoomUrl}
+    roomController.drawRoom(roomNameObject)
 
   }
 }

@@ -16,29 +16,26 @@ var firebaseHelper = (function() {
   }
 
   var _createRoom = function() {
-    var roomPath = _makeRoomName()
-    var newRoomUrl = BASE_URL + roomPath
+    var roomName = _makeRandomRoomName()
+    var newRoomUrl = BASE_URL + roomName
     var newRoom = new Firebase(newRoomUrl)
 
-    var roomsLatitude = new Firebase(ROOM_LIST_PATH + roomPath + '/location/latitude')
+    var roomsLatitude = new Firebase(ROOM_LIST_PATH + roomName + '/location/latitude')
     var roomLat = cookieFactory.getValue("user-Latitude");
     roomsLatitude.set(Number(roomLat))
 
-    var roomsLongitude = new Firebase(ROOM_LIST_PATH + roomPath + '/location/longitude')
+    var roomsLongitude = new Firebase(ROOM_LIST_PATH + roomName + '/location/longitude')
     var roomLong = cookieFactory.getValue("user-Longitude");
     roomsLongitude.set(Number(roomLong))
 
-    var availableIconsUrl = ROOM_LIST_PATH + roomPath + '/available_icons'
+    var availableIconsUrl = ROOM_LIST_PATH + roomName + '/available_icons'
     var availableIconsFirebase = new Firebase(availableIconsUrl)
     availableIconsFirebase.set({user1: 'bell', user2: 'gavel', user3: 'glass', user4: 'eye', user5: 'folder', user6: 'leaf', user7: 'magic', user8: 'male', user9:'female', user10: 'globe' })
 
-    return roomPath
+    return roomName
   }
 
-  var _makeRoomName = function() {
-    var randomName = Faker.Name.firstName() + Math.floor((Math.random() * 10) + 1);
-    return randomName
-  }
+  
 
   var _pushToFirebase = function(firebaseUrl, userMessage){
     var self = this;
@@ -66,7 +63,7 @@ var firebaseHelper = (function() {
 
   var _createFirebaseUserLocations = function(fbInfo) {
     var userLatLong = cookieFactory.getUserLocation()
-    var fireBasePath = BASE_URL + '/room_list/' + fbInfo.roomPath + "/user_locations"
+    var fireBasePath = BASE_URL + '/room_list/' + fbInfo.roomName + "/user_locations"
     var userLocation = new Firebase( fireBasePath )
     userLocation.push(userLatLong)
   }
@@ -80,10 +77,10 @@ var firebaseHelper = (function() {
     })
   }
 
-  var _setUserToRoom = function(chatRoomUrl, roomPath){
+  var _setUserToRoom = function(chatRoomUrl, roomName){
 
     // Adds the user to the 'present users' list
-    var userPresenceListUrl = ROOM_LIST_PATH + roomPath + '/presentUsers'
+    var userPresenceListUrl = ROOM_LIST_PATH + roomName + '/presentUsers'
     var userPresenceFirebase = firebaseHelper.createFireBase(userPresenceListUrl)
     var justPushed = userPresenceFirebase.push({user_token: cookieFactory.getValue('user-token')})
 
@@ -93,7 +90,7 @@ var firebaseHelper = (function() {
     userToDelete.onDisconnect().remove()
 
     // Retrieves list of available user icons, comes in as a hash
-    var availableIconsUrl = ROOM_LIST_PATH + roomPath + '/available_icons'
+    var availableIconsUrl = ROOM_LIST_PATH + roomName + '/available_icons'
     var availableIconsFirebase = new Firebase(availableIconsUrl)
     var availableIconsHash = _getFirebaseValue(availableIconsFirebase)
 
@@ -134,4 +131,4 @@ var firebaseHelper = (function() {
     getFirebaseUserLocations: _getFirebaseUserLocations,
     getUserCount: _getUserCount
   }
-}()
+})()
