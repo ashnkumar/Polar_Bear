@@ -24,11 +24,7 @@ PolarBear = {
 
 
   checkGeoLocation: function(){
-    if(navigator.geolocation){
       navigator.geolocation.getCurrentPosition(geoHelper.success, geoHelper.failure, geoHelper.defaultOps)
-    } else {
-      console.log("the fails")
-    }
   },
 
   fireRoomListEvents: function() {
