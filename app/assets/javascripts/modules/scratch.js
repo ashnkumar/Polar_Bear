@@ -32,33 +32,28 @@ var _inRange = function (roomPath, location1, location2) {
     }
     var centroid = geoHelper.getCentroid(objects)
     var roomRadius = geoHelper.getNewRadius(centroid, objects)
-    firebaseHelper.updateFireBase(firebaseUrl, { latitude: centroid.latitude, longitude: centroid.longitude, radius: ?? })
+    firebaseHelper.updateFireBase(firebaseUrl, { latitude: centroid.latitude, longitude: centroid.longitude, radius: roomRadius })
   },
 
   // create_room insert a radius of .5; then set this
+
+
     var _getNewRadius = function(centroid, userLocations) {
-      var locationsLength = userLocations.length
-
+    var locationsLength = userLocations.length
+    var minimumRadius = .1 // sets a minimum radius for a room
       for(var i = 0; i < locationsLength; i++) {
-
+        userLatFloat = parseFloat(userLocations[i].latitude)
+        userLongFloat = parseFloat(userLocations[i].longitude)
+        centroidLatFloat = parseFloat(centroid.latitude)
+        centroidLongFloat = parseFloat(centroid.longitude)
+        currentDistance = geoHelper.calculateDistance(userLatFloat, userLongFloat, centroidLatFloat, centroidLongFloat)
+        if (currentDistance > minimumRadius) {
+          minimumRadius = currentDistance}
+        }
+        return minimumRadius
       }
 
     }
 
 // geoHelper.var _calculateDistance = function distance(lat1, lon1, lat2, lon2)
 
-   var _getCentroid = function(userLocations){
-    var latSum = 0
-    var longSum = 0
-    var latFloat;
-    var longFloat;
-    var locationsLength = userLocations.length
-    for(var i = 0; i < locationsLength; i++) {
-      latFloat = parseFloat(userLocations[i].latitude)
-      longFloat = parseFloat(userLocations[i].longitude)
-      latSum += latFloat
-      longSum += longFloat
-    }
-    var centroid = { latitude: latSum / locationsLength, longitude: longSum / locationsLength }
-    return centroid
-  }
