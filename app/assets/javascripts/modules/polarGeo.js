@@ -47,11 +47,9 @@ var geoHelper = (function(){
 
   var _default = { enableHighAccuracy: true, timeout: 1000, maximumAge: 0}
   var _success = function(position){
-    console.log(position)
       new CustomEvent("geoDataReceived")
       $.event.trigger("geoDataReceived")
       cookieFactory.createCookie(position.coords.latitude, position.coords.longitude)
-      console.log(document.cookie)
   }
   var _failure = function(position){ alert("Sorry, we couldn't find you. You need to allow geolocation to use PolarBear.") }
 
