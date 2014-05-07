@@ -14,7 +14,7 @@ describe("cookieFactory", function(){
       cookieFactory.createCookie("37.780446","-122.405950");
       expect(document.cookie).toMatch(/user-token=[A-Za-z0-9]+:user-Latitude=37\.780446:user-Longitude=-122\.405950/)
     })
-  })
+  });
 
   describe("get user token", function(){
     beforeEach(function(){
@@ -28,7 +28,7 @@ describe("cookieFactory", function(){
     it("returns a 15 character user token from the dom cookie", function(){
       expect(cookieFactory.getValue('user-token').length).toEqual(15)
     })
-  })
+  });
 
   describe("get user latitude", function(){
     it("returns a user latitude value", function(){
@@ -37,7 +37,7 @@ describe("cookieFactory", function(){
 
      })
 
-  })
+  });
 
   describe("get user longitude", function(){
     it("creates a new cookie", function(){
@@ -45,6 +45,13 @@ describe("cookieFactory", function(){
       expect(cookieFactory.getValue('user-Longitude')).toEqual("-122.405950")
 
      })
+  });
+
+  describe("destroys user cookie",function(){
+    it("when the user token is set to days-1", function(){
+      document.cookie = "user-token=XECeG1FpczkkAyu"
+      expect(cookieFactory.deleteCookie("XECeG1FpczkkAyu")).toBeNull()
+    })
   })
 
 });
