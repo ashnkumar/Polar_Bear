@@ -34,6 +34,10 @@ var firebaseHelper = (function() {
     var roomLong = cookieFactory.getValue("user-Longitude");
     roomsLongitude.set(Number(roomLong))
 
+    var roomsRadius = new Firebase(ROOM_LIST_PATH + roomPath + '/location/radius')
+    var normalRadius = .5
+    roomsRadius.set(Number(normalRadius))
+
     var availableIconsUrl = ROOM_LIST_PATH + roomPath + '/available_icons'
     var availableIconsFirebase = new Firebase(availableIconsUrl)
     availableIconsFirebase.set({user1: 'bell', user2: 'gavel', user3: 'glass', user4: 'eye', user5: 'folder', user6: 'leaf', user7: 'magic', user8: 'male', user9:'female', user10: 'globe' })

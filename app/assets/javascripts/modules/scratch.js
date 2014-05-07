@@ -39,22 +39,22 @@
   // create_room insert a radius of .5; then set this
 
 
-    var _getNewRadius = function(centroid, userLocations) {
-    var locationsLength = userLocations.length
-    var minimumRadius = .1 // sets a minimum radius for a room
-      for(var i = 0; i < locationsLength; i++) {
-        userLatFloat = parseFloat(userLocations[i].latitude)
-        userLongFloat = parseFloat(userLocations[i].longitude)
-        centroidLatFloat = parseFloat(centroid.latitude)
-        centroidLongFloat = parseFloat(centroid.longitude)
-        currentDistance = geoHelper.calculateDistance(userLatFloat, userLongFloat, centroidLatFloat, centroidLongFloat)
-        if (currentDistance > minimumRadius) {
-          minimumRadius = currentDistance}
-        }
-        return minimumRadius
-      }
+    // var _getNewRadius = function(centroid, userLocations) {
+    // var locationsLength = userLocations.length
+    // var minimumRadius = .1 // sets a minimum radius for a room
+    //   for(var i = 0; i < locationsLength; i++) {
+    //     userLatFloat = parseFloat(userLocations[i].latitude)
+    //     userLongFloat = parseFloat(userLocations[i].longitude)
+    //     centroidLatFloat = parseFloat(centroid.latitude)
+    //     centroidLongFloat = parseFloat(centroid.longitude)
+    //     currentDistance = geoHelper.calculateDistance(userLatFloat, userLongFloat, centroidLatFloat, centroidLongFloat)
+    //     if (currentDistance > minimumRadius) {
+    //       minimumRadius = currentDistance}
+    //     }
+    //     return minimumRadius
+    //   }
 
-    }
+    // }
 
 // geoHelper.var _calculateDistance = function distance(lat1, lon1, lat2, lon2)
 
