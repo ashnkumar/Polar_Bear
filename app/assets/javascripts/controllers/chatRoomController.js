@@ -13,7 +13,7 @@ ChatRoomApp.RoomController.prototype = {
    self = this;
    $(document).bind('keypress',pressed);
    $(".map_button").on('click', function(){
-    showMap.toggleMapView()
+    showMap.loadMap();
    });
 
    function pressed(e){

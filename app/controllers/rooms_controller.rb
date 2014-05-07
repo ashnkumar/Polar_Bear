@@ -18,5 +18,9 @@ class RoomsController < ApplicationController
   def map
     render :map, layout: false
   end
+
+  def test
+    render :test, layout: false
+  end
 end
 

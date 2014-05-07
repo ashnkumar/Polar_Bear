@@ -6,4 +6,5 @@ PolarBear::Application.routes.draw do
   get '/room_list', to: 'rooms#room_list'
   get 'landing_page', to: 'rooms#landing'
   get '/map', to: 'rooms#map'
+  get '/test', to: 'rooms#test'
 end
