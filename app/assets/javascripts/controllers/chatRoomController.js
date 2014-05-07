@@ -4,10 +4,7 @@ ChatRoomApp.RoomController = function(model, view){
 }
 
 ChatRoomApp.RoomController.prototype = {
-  drawRoom: function(roomName){
-    this.view.drawChatRoom(roomName);
-    $(document).on('ajax-back', this.bindMessageListeners.bind(this) )
-  },
+
   bindMessageListeners: function(){
    var self = this;
    $(document).bind('keypress',pressed);
@@ -19,8 +16,19 @@ ChatRoomApp.RoomController.prototype = {
         $("#messageInput").val('');
        }
    };
-
    firebaseHelper.bindChatWindowButtons(self.model.firebaseServer)
   },
+
+  drawRoom: function(roomName) {
+    this.view.drawChatRoom(roomName);
+    $(document).on('ajax-back', this.bindMessageListeners.bind(this) )
+  },
+
+  createNewRoom: function() {
+
+  }
+
+
+
 
 }

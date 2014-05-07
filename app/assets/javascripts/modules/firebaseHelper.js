@@ -3,7 +3,6 @@ var firebaseHelper = (function() {
     var newFirebase = new Firebase(firebaseUrl)
     return newFirebase
   }
-
   var _getFirebaseValue = function(firebaseObject) {
     var val;
     firebaseObject.on('value', function(snapshot) {
@@ -11,7 +10,6 @@ var firebaseHelper = (function() {
     })
     return val
   }
-
   var _updateFireBase = function(firebaseUrl, options) {
     var firebaseRoom = new Firebase(firebaseUrl)
     firebaseRoom.set({latitude: options.latitude, longitude: options.longitude})
@@ -136,4 +134,4 @@ var firebaseHelper = (function() {
     getFirebaseUserLocations: _getFirebaseUserLocations,
     getUserCount: _getUserCount
   }
-}())
+}()
