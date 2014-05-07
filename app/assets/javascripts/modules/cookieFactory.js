@@ -13,13 +13,15 @@ var cookieFactory =(function(){
     var days = days || 100
     var date = new Date();
     date.setTime(date.getTime() + (days*24*60*60*1000));
-    var expires = ":expires="+date.toGMTString();
+    //; on line 17 is keeping the expires to not display due to cookie syntax---should read ":expires"
+    var expires = ";expires="+date.toGMTString();
     return expires
   }
 
   var _createCookie = function(userLatitude, userLongitude, days){
     var userToken = _createUserToken();
     var date = _createDate(days);
+    //;on line 25 before path is keeping the path from displaying. --should read ": path=/"
     var cookieString = "user-token=" + userToken + ":user-Latitude=" + userLatitude + ":user-Longitude=" + userLongitude + date + "; path=/" ;
     document.cookie = cookieString
   }
