@@ -12,15 +12,17 @@ RoomListApp.RoomListController.prototype = {
       this.createChatRoom(firebaseHelper.createRoom())
     }.bind(this))
   },
-  updateGeoLocation: function(e, eventData) {
+   updateGeoLocation: function(e, eventData) {
     var firebaseUrl = ROOM_LIST_PATH + eventData.roomName + '/location'
     var objects = []
     for(var i in eventData.userLocation) {
       objects.push(eventData.userLocation[i])
     }
     var centroid = geoHelper.getCentroid(objects)
-    firebaseHelper.updateFireBase(firebaseUrl, { latitude: centroid.latitude, longitude: centroid.longitude })
+    var roomRadius = geoHelper.getNewRadius(centroid, objects)
+    firebaseHelper.updateFireBase(firebaseUrl, { latitude: centroid.latitude, longitude: centroid.longitude, radius: roomRadius })
   },
+
   summonRooms: function(){
     var activeRooms = geoparseHelper.parseRoomsToDisplayEligibleRooms()
 

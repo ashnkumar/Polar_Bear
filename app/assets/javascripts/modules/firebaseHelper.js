@@ -12,10 +12,14 @@ var firebaseHelper = (function() {
     return val
   }
 
-  var _updateFireBase = function(firebaseUrl, options) {
+  var _updateFireBase = function(firebaseUrl, options, roomRadius) {
     var firebaseRoom = new Firebase(firebaseUrl)
+    var firebaseRadiusPath = new Firebase(firebaseUrl + "/radius")
     firebaseRoom.set({latitude: options.latitude, longitude: options.longitude})
+    firebaseRadiusPath.set({room_radius: roomRadius})
   }
+
+
 
   var _createRoom = function() {
     var roomPath = _makeRoomName()
