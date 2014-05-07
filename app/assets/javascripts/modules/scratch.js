@@ -1,6 +1,7 @@
-var _inRange = function (roomPath, location1, location2) {
+var _inRange = function (location1, location2, roomPath) {
     var acceptable_range = function(){
       // get value from roomPath for radius: use getFirebaseValue
+      // var firebaseUrl = ROOM_LIST_PATH + eventData.roomName + '/location'
     }
     var lat1 = location1[0]
     var lat2 = location2[0]

@@ -39,7 +39,8 @@ var geoparseHelper = (function(){
   var _roomIsEligible = function(roomObject) {
     var userLocation = [cookieFactory.getValue('user-Latitude'), cookieFactory.getValue('user-Longitude')]
     var roomLocation = [roomObject['roomLatitude'], roomObject['roomLongitude']]
-    return geoHelper.inRange(userLocation, roomLocation)
+    var roomRadius = [roomObject['radius'['radius']]]
+    return geoHelper.inRange(userLocation, roomLocation, roomRadius)
   }
 
   var _getRoomLocations = function(roomNames) {
