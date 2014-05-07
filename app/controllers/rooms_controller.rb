@@ -20,7 +20,11 @@ class RoomsController < ApplicationController
   end
 
   def test
-    render :test, layout: false
+    render :test, layout: false # for map testing, delete
+  end
+
+  def map2
+    render :map2, layout: false # for map testing, delete
   end
 end
 

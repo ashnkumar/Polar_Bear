@@ -306,14 +306,18 @@ Chatroom STYLES
 }
 
 #map-canvas {
-        height: 100%;
+        height: 100px;
+        width: 100px;
         margin: 0px;
         padding: 0px
       }
 
- .hide_map {
+ .show_map {
+ 	height:100px;
+ 	width: 100px;
 
  }
+
 
 
 

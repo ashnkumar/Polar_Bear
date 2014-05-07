@@ -1,20 +1,19 @@
-  <style>
-  #map-canvas {
-        height: 40%;
-        width: 40%;
+  <style>#map-canvas {
+        height: 100px;
+        width: 100px;
         margin: 0px;
         padding: 0px
       }
       </style>
-        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+        <script src=" https://maps.googleapis.com/maps/api/js?sensor=true"></script>
     <script>
 // This example creates a simple polygon representing the Bermuda Triangle.
 
 function initialize() {
   var mapOptions = {
-    zoom: 5,
-    center: new google.maps.LatLng(24.886436490787712, -70.2685546875),
-    mapTypeId: google.maps.MapTypeId.TERRAIN
+    zoom: 30,
+    center: new google.maps.LatLng(37.784430199999996, -122.39708179999998),
+    mapTypeId: google.maps.MapTypeId.ROADMAP
   };
 
   var bermudaTriangle;
@@ -24,10 +23,10 @@ function initialize() {
 
   // Define the LatLng coordinates for the polygon's path.
   var triangleCoords = [
-    new google.maps.LatLng(25.774252, -80.190262),
-    new google.maps.LatLng(18.466465, -66.118292),
-    new google.maps.LatLng(32.321384, -64.75737),
-    new google.maps.LatLng(25.774252, -80.190262)
+    new google.maps.LatLng(37.784430199999996, -122.39708179999998),
+    new google.maps.LatLng(37.7843776, -122.39711290000001),
+    new google.maps.LatLng(37.784410099999995, -122.39712069999999),
+    // new google.maps.LatLng(25.774252, -80.190262)
   ];
 
   // Construct the polygon.
