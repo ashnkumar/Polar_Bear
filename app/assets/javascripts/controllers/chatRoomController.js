@@ -8,9 +8,13 @@ ChatRoomApp.RoomController.prototype = {
     this.view.drawChatRoom(roomName);
     $(document).on('ajax-back', this.bindMessageListeners.bind(this) )
   },
+
   bindMessageListeners: function(){
    self = this;
    $(document).bind('keypress',pressed);
+   $(".map_button").on('click', function(){
+    showMap.toggleMapView()
+   });
 
    function pressed(e){
       if (e.keyCode == 13){
