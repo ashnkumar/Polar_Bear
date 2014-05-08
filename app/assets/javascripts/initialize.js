@@ -8,8 +8,8 @@ $('document').ready( function(){
 PolarBear = {
   initialize: function(){
     // this.drawLandingPage();
-    var roomsFromFirebase = geoparseHelper.getAllRooms()
-    debugger
+    var roomsFromFirebase = geoparseHelper.parseRoomsToDisplayEligibleRooms()
+
     // var rooms = {rooms: roomList}
     // $.ajax({
     //   type: 'get',

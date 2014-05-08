@@ -2,7 +2,8 @@ var geoparseHelper = (function(){
 	var _parseRoomsToDisplayEligibleRooms = function() {
     var roomListFirebaseObject = firebaseHelper.createFireBase(ROOM_LIST_PATH)
     var roomListJson = firebaseHelper.getFirebaseValue(roomListFirebaseObject)
-    var roomNames = Object.keys(roomListJson)
+    debugger
+    // var roomNames = Object.keys(roomListJson)
     var roomLocationArray = _getRoomLocations(roomNames)
     var eligibleRoomsArray = _getEligibleRooms(roomLocationArray)
 
