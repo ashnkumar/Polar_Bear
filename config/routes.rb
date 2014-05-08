@@ -1,10 +1,8 @@
 PolarBear::Application.routes.draw do
-  root to: "homepages#index"
-  resources :homepages, only: [:index]
-  resources :rooms, only: [:show, :index]
-  resources :chatrooms, only: [:show]
+  root to: "chatrooms#index"
+  # resources :rooms, only: [:show, :index]
+  resources :chatrooms, only: [:index, :show]
 
-  get '/room_list', to: 'rooms#room_list'
-  # get 'landing_page', to: 'rooms#landing'
+  get '/room_list', to: 'chatrooms#index'
 end
 

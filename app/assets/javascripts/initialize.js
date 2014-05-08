@@ -8,7 +8,19 @@ $('document').ready( function(){
 PolarBear = {
   initialize: function(){
     // this.drawLandingPage();
-    this.checkGeoLocation();
+    var roomsFromFirebase = geoparseHelper.getAllRooms()
+    debugger
+    // var rooms = {rooms: roomList}
+    // $.ajax({
+    //   type: 'get',
+    //   url: '/',
+    //   dataType: "text"
+    //  }).done(function(data){
+    //   var template = Handlebars.compile(data);
+    //   $(".room-list").html(template(rooms))
+
+
+    // this.checkGeoLocation();
   },
 
   // drawLandingPage: function(){
@@ -29,6 +41,17 @@ PolarBear = {
       console.log('no geolocation')
     }
   },
+
+  // drawRoomList: function() {
+  //   debugger
+  //   $.ajax({
+  //     type: 'get',
+  //     url: '/rooms',
+  //     dataType: "text"
+  //    }).done(function(data){
+  //      $(".other_stuff").html(data);
+  //    })
+  // },
 
   fireRoomListEvents: function() {
     this.bindRoomListener();

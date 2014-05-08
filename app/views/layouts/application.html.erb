@@ -12,8 +12,14 @@
   <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js'></script>
 </head>
 <body>
-
-<%= yield %>
+  <div class="container">
+    <%= link_to image_tag('white_bear.png', :class => "bear"), root_path %>
+    <div class="other_stuff">
+    </div>
+    <section class="room-list twelvecol">
+      <%= yield %>
+    </section>
+  </div>
 
 </body>
 </html>

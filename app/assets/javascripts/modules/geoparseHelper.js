@@ -10,6 +10,27 @@ var geoparseHelper = (function(){
     return eligibleRoomsArray
   }
 
+  var _getAllRooms = function() {
+    // var self = this;
+    var roomListFirebaseObject = new Firebase(ROOM_LIST_PATH)
+
+    var rooms;
+    roomListFirebaseObject.on('value', function(snapshot) {
+      rooms = snapshot.val()
+
+    });
+    return rooms;
+    // var roomNames = Object.keys(roomListJson)
+
+
+
+
+
+    // var roomNames = Object.keys(roomsListJson)
+
+    // return roomNames
+  }
+
   var _getEligibleRooms = function(roomLocationArray){
     var eligibleRoomsArray = []
     for (var i = 0; i < roomLocationArray.length; i++){
@@ -72,6 +93,7 @@ var geoparseHelper = (function(){
 
   return {
     parseRoomsToDisplayEligibleRooms: _parseRoomsToDisplayEligibleRooms,
+    getAllRooms: _getAllRooms,
     getEligibleRooms: _getEligibleRooms,
     getRoomLongitude: _getRoomLongitude,
     getRoomLatitude: _getRoomLatitude,
