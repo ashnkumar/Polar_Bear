@@ -41,22 +41,25 @@ RoomListApp.RoomListController.prototype = {
   },
 
   sendInfoToChatRoom: function(roomPath) {
-    // if(Object.userLocations.keys < 3) {
       firebaseHelper.createFirebaseUserLocations({
         roomPath: roomPath
       })
-    // }
   },
 
   handleUserRoomAssignment: function() {
     var $room = $(event.target)
     var chatroom = $room.data('id')
-    var test = this.objectToArray(Object.userLocations)
-    if(test.length < 3){
-      this.sendInfoToChatRoom(chatroom);
+    countObject = geoparseHelper.getRoomUserLocations(chatroom)
+    count = this.objectToArray(countObject).length
+
+    if(count == 3){
+      console.log(count)
       this.getInfoFromChatroom(chatroom);
     }
-    // this.sendUserToChatroom(chatroom)
+    else {
+      this.sendInfoToChatRoom(chatroom);
+      console.log(count)
+    }
   },
   objectToArray: function(object){
     var collection = []

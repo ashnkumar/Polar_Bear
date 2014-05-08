@@ -19,6 +19,7 @@ var firebaseHelper = (function() {
 
 
 
+
   var _createRoom = function() {
     var roomPath = _makeRoomName()
     var newRoomUrl = BASE_URL + roomPath
