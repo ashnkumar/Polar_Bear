@@ -117,8 +117,8 @@ var firebaseHelper = (function() {
     // When he disconnects, add it back to the hash
     usersKeyFirebase.onDisconnect().set(iconForUser)
 
-    colors = [red, bue, orange]
-    this.userColor colors.sampl
+    // colors = [red, bue, orange]
+    // this.userColor colors.sampl
 
   }
 

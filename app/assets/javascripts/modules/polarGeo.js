@@ -47,6 +47,7 @@ var geoHelper = (function(){
 
   var _default = { enableHighAccuracy: true, timeout: 1000, maximumAge: 0}
   var _success = function(position){
+      console.log("success")
       new CustomEvent("geoDataReceived")
       $.event.trigger("geoDataReceived")
       cookieFactory.createCookie(position.coords.latitude, position.coords.longitude)
