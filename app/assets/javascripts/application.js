@@ -17,3 +17,12 @@
 //= require modules/cookieFactory
 //= require modules/firebaseHelper
 //= require_tree .
+
+// PB = {
+//   controllers: {},
+//   models: {}
+//   firebase: {}
+// }
+
+
+// Pb
