@@ -31,7 +31,7 @@ var geoHelper = (function(){
 
   var _getNewRadius = function(centroid, userLocations) {
     var locationsLength = userLocations.length
-    var minimumRadius = .1 // sets a minimum radius for a room
+    var minimumRadius = .019 // sets a minimum radius for a room
     for(var i = 0; i < locationsLength; i++) {
       userLatFloat = parseFloat(userLocations[i].latitude)
       userLongFloat = parseFloat(userLocations[i].longitude)
@@ -76,6 +76,7 @@ var _inRange = function (location1, location2, roomRadius) {
     defaultOps: _default,
     calculateDistance: _calculateDistance,
     inRange: _inRange,
-    getCentroid: _getCentroid
+    getCentroid: _getCentroid,
+    getNewRadius: _getNewRadius
   }
 }())

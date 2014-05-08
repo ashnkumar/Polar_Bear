@@ -56,7 +56,7 @@ RoomListApp.RoomListController.prototype = {
       this.sendInfoToChatRoom(chatroom);
       this.getInfoFromChatroom(chatroom);
     }
-    this.sendUserToChatroom(chatroom)
+    // this.sendUserToChatroom(chatroom)
   },
   objectToArray: function(object){
     var collection = []

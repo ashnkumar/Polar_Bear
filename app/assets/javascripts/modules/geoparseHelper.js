@@ -37,9 +37,10 @@ var geoparseHelper = (function(){
   }
 
   var _roomIsEligible = function(roomObject) {
+    console.log(roomObject)
     var userLocation = [cookieFactory.getValue('user-Latitude'), cookieFactory.getValue('user-Longitude')]
     var roomLocation = [roomObject['roomLatitude'], roomObject['roomLongitude']]
-    var roomRadius = [roomObject['radius'['radius']]]
+    var roomRadius = [roomObject['roomRadius']]
     return geoHelper.inRange(userLocation, roomLocation, roomRadius)
   }
 
@@ -48,9 +49,10 @@ var geoparseHelper = (function(){
     for (var i = 0; i < roomNames.length; i++){
       var roomLatitude = _getRoomLatitude(roomNames[i])
       var roomLongitude = _getRoomLongitude(roomNames[i])
+      var roomRadius = _getRoomRadius(roomNames[i])
       var userCount = firebaseHelper.getUserCount(roomNames[i])
 
-      roomLocationArray.push({name: roomNames[i], roomLatitude: roomLatitude, roomLongitude: roomLongitude, userCount: userCount})
+      roomLocationArray.push({name: roomNames[i], roomLatitude: roomLatitude, roomLongitude: roomLongitude, roomRadius: roomRadius, userCount: userCount})
     }
 
     return roomLocationArray
@@ -72,11 +74,20 @@ var geoparseHelper = (function(){
     return longitude
   }
 
+    var _getRoomRadius = function(roomName) {
+    var roomRadiusUrl = ROOM_LIST_PATH + roomName + '/location/radius'
+    var roomRadiusFirebase = firebaseHelper.createFireBase(roomRadiusUrl)
+    var radius = firebaseHelper.getFirebaseValue(roomRadiusFirebase)
+
+    return radius
+  }
+
   return {
     parseRoomsToDisplayEligibleRooms: _parseRoomsToDisplayEligibleRooms,
     getEligibleRooms: _getEligibleRooms,
     getRoomLongitude: _getRoomLongitude,
     getRoomLatitude: _getRoomLatitude,
+    getRoomRadius: _getRoomRadius,
     getRoomLocations: _getRoomLocations,
     roomIsEligible: _roomIsEligible,
     distanceFromRoom: _distanceFromRoom
