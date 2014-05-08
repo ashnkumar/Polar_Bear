@@ -7,8 +7,9 @@ $('document').ready( function(){
 
 PolarBear = {
   initialize: function(){
-    this.drawLandingPage();
+    //this.drawLandingPage();
     this.checkGeoLocation();
+    //this.fireRoomListEvents();
   },
 
   drawLandingPage: function(){

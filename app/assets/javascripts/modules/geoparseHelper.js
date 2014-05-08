@@ -10,6 +10,7 @@ var geoparseHelper = (function(){
     return eligibleRoomsArray
   }
 
+
   var _getEligibleRooms = function(roomLocationArray){
     var eligibleRoomsArray = []
     for (var i = 0; i < roomLocationArray.length; i++){
@@ -28,6 +29,7 @@ var geoparseHelper = (function(){
 
     return eligibleRoomsArray
   }
+
 
   var _distanceFromRoom = function(roomObject){
       var distance = geoHelper.calculateDistance(cookieFactory.getValue("user-Latitude"), cookieFactory.getValue("user-Longitude"), roomObject["roomLatitude"], roomObject["roomLongitude"])
