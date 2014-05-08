@@ -33,7 +33,7 @@ var firebaseHelper = (function() {
 
     var availableIconsUrl = ROOM_LIST_PATH + roomPath + '/available_icons'
     var availableIconsFirebase = new Firebase(availableIconsUrl)
-    availableIconsFirebase.set({user1: 'beer', user2: 'gavel', user3: 'glass', user4: 'bolt', user5: 'cloud', user6: 'crosshairs', user7: 'magic', user8: 'flask', user9:'flag-checkered', user10: 'globe', user11: 'fighter-jet', user12: 'money', user13: 'rocket', user14: 'smile-o',, user15: 'floppy-o', user16: 'users', user17: 'puzzle-piece', user18: 'group', user19: 'cogs', user20: 'code-fork' })
+    availableIconsFirebase.set({user1: 'beer', user2: 'gavel', user3: 'glass', user4: 'bolt', user5: 'cloud', user6: 'crosshairs', user7: 'magic', user8: 'flask', user9:'flag-checkered', user10: 'globe', user11: 'fighter-jet', user12: 'money', user13: 'rocket', user14: 'smile-o', user15: 'floppy-o', user16: 'users', user17: 'puzzle-piece', user18: 'group', user19: 'cogs', user20: 'code-fork' })
 
     return roomPath
   }
