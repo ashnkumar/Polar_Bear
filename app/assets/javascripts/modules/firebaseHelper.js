@@ -17,7 +17,6 @@ var firebaseHelper = (function() {
     firebaseRoom.set({latitude: options.latitude, longitude: options.longitude})
   }
 
-  var
 
   var _createRoom = function() {
     var roomPath = _makeRoomName()
@@ -49,7 +48,7 @@ var firebaseHelper = (function() {
     var chatRoom = new Firebase(firebaseUrl)
     chatRoom.push({userIcon: self.userIcon, message: userMessage})
   }
-  var _BHrandomColorPicker
+  // var _BHrandomColorPicker
   var _bindChatWindowButtons = function(firebaseServer) {
     var self = this;
     var chatRoom = firebaseServer
