@@ -57,8 +57,9 @@ RoomListApp.RoomListController.prototype = {
     }
     else {
       this.sendInfoToChatRoom(chatroom);
-      console.log(count)
+
     }
+    this.sendUserToChatroom(chatroom)
   },
   objectToArray: function(object){
     var collection = []

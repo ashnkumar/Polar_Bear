@@ -1,4 +1,4 @@
-BASE_URL = 'https://3243fawkdafg.firebaseio.com//'
+BASE_URL = 'https://luminous-fire-2873.firebaseio.com/'
 
 ROOM_LIST_PATH = BASE_URL + 'room_list/'
 
