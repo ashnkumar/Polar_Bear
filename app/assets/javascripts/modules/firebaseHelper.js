@@ -13,7 +13,7 @@ var firebaseHelper = (function() {
   }
 
   var _updateFireBase = function(firebaseUrl, options) {
-    var firebaseRoom = this.createFireBase(firebaseUrl)
+    var firebaseRoom = _createFireBase(firebaseUrl)
     firebaseRoom.set({latitude: options.latitude, longitude: options.longitude})
   }
 
