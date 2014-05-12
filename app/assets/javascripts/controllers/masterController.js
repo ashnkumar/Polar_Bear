@@ -32,7 +32,7 @@ PB.Controllers.Master.prototype = {
     new CustomEvent('readyToMakeRoom', {'chatRoomUrl': ''})
     
     $(document).on('readyToMakeRoom', function(event, roomName) {
-      self.prepareExistingChatRoom(roomName)
+      self.prepareChatroom(roomName)
     })
 	},
 
@@ -50,19 +50,12 @@ PB.Controllers.Master.prototype = {
 	},
 	
 	createNewChatRoom: function() {
-		var chatroomDomSelectors = {
-			room: '.room',
-      roomTemplate: '#room-template'
-		}
-
-		var chatroomView = new PB.Views.Room(chatroomDomSelectors)
-		var chatroom = new PB.Models.Room()
-		var chatroomController = new PB.Controllers.Room(chatroom, chatroomView, this)
-
-		chatroomController.makeNewRoom()
+		var roomName = randomHelpers.makeRandomRoomName()
+		var newRoom = true
+		this.prepareChatroom(roomName, newRoom)
 	},
 
-	prepareExistingChatRoom: function(roomName) {
+	prepareChatroom: function(roomName, newRoom) {
 		var chatroomDomSelectors = {
 			room: '.room',
       roomTemplate: '#room-template'
@@ -72,7 +65,7 @@ PB.Controllers.Master.prototype = {
 		var chatroom = new PB.Models.Room()
 		var chatroomController = new PB.Controllers.Room(chatroom, chatroomView, this)
 
-		chatroomController.makeExistingRoom(roomName)
+		chatroomController.makeRoom(roomName, newRoom)
 	}
 
 }
