@@ -68,23 +68,16 @@ var firebaseFunctions = (function() {
   var _setUserToRoom = function(chatRoomUrl, roomPath){
 
     // Adds the user to the 'present users' list
-    var userPresenceListUrl = ROOM_LIST_PATH + roomPath + '/presentUsers'
-    var userPresenceFirebase = firebaseHelper.createFireBase(userPresenceListUrl)
-    var justPushed = userPresenceFirebase.push({user_token: userFactory.getUserValue('userToken')})
+    
 
     // Sets the user to be deleted from the 'presence' list when he disconnects
-    var userId = justPushed.name()
-    var userToDelete = new Firebase(userPresenceListUrl + '/' + userId)
-    userToDelete.onDisconnect().remove()
+    
 
     // Retrieves list of available user icons, comes in as a hash
-    var availableIconsUrl = ROOM_LIST_PATH + roomPath + '/available_icons'
-    var availableIconsFirebase = new Firebase(availableIconsUrl)
-    var availableIconsHash = _getFirebaseValue(availableIconsFirebase)
+   
 
     // Picks a random key from the hash
-    var numberOfAvailableIcons = Object.size(availableIconsHash)
-    var randomIndexInHash = Math.floor(Math.random() * (numberOfAvailableIcons)+1);
+
     var identifiedKeyInHash = 'user' + randomIndexInHash
     var iconForUser = availableIconsHash[identifiedKeyInHash]
     this.userIcon = iconForUser

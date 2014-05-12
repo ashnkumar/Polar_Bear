@@ -24,11 +24,13 @@ PB.Controllers.Master.prototype = {
 	},
 
 	setUserIcon: function(roomName) {
-		this.userController.setUserIcon()
+		var userIcon = this.userController.setUserIcon(roomName)
+		return userIcon;
 	},
 
 	setUserColor: function(roomName) {
-		this.userController.setUserColor()
+		var userColor = this.userController.setUserColor()
+		return userColor;
 	},
 
 	setUserPresence: function(roomName) {

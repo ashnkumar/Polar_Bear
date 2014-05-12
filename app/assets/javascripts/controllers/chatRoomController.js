@@ -46,7 +46,7 @@ PB.Controllers.Room.prototype = {
 
 	 	var userIcon = this.masterController.setUserIcon(roomName)
 	 	var userColor = this.masterController.setUserColor(roomName)
-
+	 	debugger
 	 	this.view.drawRoom(roomName, userColor, userIcon)
 	}
 }

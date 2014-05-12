@@ -24,8 +24,23 @@ PB.Controllers.User.prototype = {
     return text;
 	},
 
-	setUserIcon: function() {
+	setUserIcon: function(roomName) {
+		var availableIconsUrl = PB.firebaseUrlConstants.ROOM_LIST_PATH + roomName + '/available_icons'
+    var availableIconsFirebase = firebaseFunctions.createFirebase(availableIconsUrl)
+    var availableIconsHash = firebaseFunctions.getFirebaseValue(availableIconsFirebase)
 
+    var randomIndex = randomHelpers.getRandomIndex(availableIconsHash)
+    var identifiedKeyInHash = 'user' + randomIndex
+    var iconForUser = availableIconsHash[identifiedKeyInHash]
+    var userIcon = iconForUser
+
+    var usersKeyUrl = availableIconsUrl + '/' + identifiedKeyInHash
+    var usersKeyFirebase = firebaseFunctions.createFirebase(usersKeyUrl)
+
+    usersKeyFirebase.remove()
+    usersKeyFirebase.onDisconnect().set(iconForUser)
+
+    return userIcon
 	},
 
 	setUserColor: function() {
@@ -35,7 +50,6 @@ PB.Controllers.User.prototype = {
   },
 	
 	setUserPresence: function(roomName) {
-
 		var userPresenceListUrl = PB.firebaseUrlConstants.ROOM_LIST_PATH + roomName + '/presentUsers'
     var userPresenceFirebase = firebaseFunctions.createFirebase(userPresenceListUrl)
     var justPushed = userPresenceFirebase.push({user_token: self.userInfo.userToken})

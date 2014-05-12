@@ -5,9 +5,9 @@ PB.Models.Room = function(){
 }
 
 PB.Models.Room.prototype = {
-  assignUserToRoom: function(chatRoomUrl, roomPath){
-    firebaseHelper.setUserToRoom(chatRoomUrl, roomPath)
-  },
+  // assignUserToRoom: function(chatRoomUrl, roomPath){
+  //   firebaseHelper.setUserToRoom(chatRoomUrl, roomPath)
+  // },
 
 
 
