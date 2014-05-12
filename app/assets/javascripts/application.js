@@ -19,5 +19,8 @@
 //= require controllers/roomListController
 //= require models/roomList
 //= require views/roomListView
+//= require modules/randomHelpers
 //= require modules/firebaseFunctions
+//= require modules/geoParser
+//= require modules/geolocationOperations
 

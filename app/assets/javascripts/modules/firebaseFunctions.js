@@ -4,13 +4,13 @@ var firebaseFunctions = (function() {
     return newFirebase
   }
 
-  // var _getFirebaseValue = function(firebaseObject) {
-  //   var val;
-  //   firebaseObject.on('value', function(snapshot) {
-  //     val = snapshot.val()
-  //   })
-  //   return val
-  // }
+  var _getFirebaseValue = function(firebaseObject) {
+    var val;
+    firebaseObject.on('value', function(snapshot) {
+      val = snapshot.val()
+    })
+    return val
+  }
 
   // var _updateFireBase = function(firebaseUrl, options) {
   //   var firebaseRoom = new Firebase(firebaseUrl)
@@ -121,23 +121,23 @@ var firebaseFunctions = (function() {
   //   usersKeyFirebase.onDisconnect().set(iconForUser)
   // }
 
-  // var _getUserCount = function(roomName){
-  //   var userPresenceListUrl = ROOM_LIST_PATH + roomName + '/presentUsers'
-  //   var userPresenceFirebase = firebaseHelper.createFireBase(userPresenceListUrl)
-  //   var userCount = Object.size(_getFirebaseValue(userPresenceFirebase))
-  //   return userCount
-  // }
+  var _getUserCount = function(roomName){
+    var userPresenceListUrl = ROOM_LIST_PATH + roomName + '/presentUsers'
+    var userPresenceFirebase = firebaseHelper.createFireBase(userPresenceListUrl)
+    var userCount = Object.size(_getFirebaseValue(userPresenceFirebase))
+    return userCount
+  }
 
   return {
     createFireBase: _createFireBase,
+    getFirebaseValue: _getFirebaseValue,
+    getUserCount: _getUserCount
     // createRoom: _createRoom,
-    // getFirebaseValue: _getFirebaseValue,
     // pushToFirebase: _pushToFirebase,
     // updateFireBase: _updateFireBase,
     // bindChatWindowButtons: _bindChatWindowButtons,
     // setUserToRoom: _setUserToRoom,
     // createFirebaseUserLocations: _createFirebaseUserLocations,
     // getFirebaseUserLocations: _getFirebaseUserLocations,
-    // getUserCount: _getUserCount
   }
 }())

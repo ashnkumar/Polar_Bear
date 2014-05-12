@@ -26,9 +26,8 @@ PB.Controllers.RoomList.prototype = {
   	// Asks the model to get the list of active rooms
     var activeRooms = this.model.getActiveRooms()
 
-    // geoparseHelper.parseRoomsToDisplayEligibleRooms()
-
-    // this.view.drawRoomList(activeRooms)
+    // Tells the view to draw the rooms using that room list
+    this.view.drawRoomList(activeRooms)
   },
 
   // updateGeoLocation: function(e, eventData) {

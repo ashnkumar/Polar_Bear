@@ -1,11 +1,11 @@
-var geoparseHelper = (function(){
+var geoParser = (function(){
 	var _parseRoomsToDisplayEligibleRooms = function() {
-    var roomListFirebaseObject = firebaseHelper.createFireBase(ROOM_LIST_PATH)
-    var roomListJson = firebaseHelper.getFirebaseValue(roomListFirebaseObject)
+    var roomListFirebaseObject = firebaseFunctions.createFireBase(PB.firebaseUrlConstants.ROOM_LIST_PATH)
+    var roomListJson = firebaseFunctions.getFirebaseValue(roomListFirebaseObject)
     var roomNames = Object.keys(roomListJson)
     var roomLocationArray = _getRoomLocations(roomNames)
     var eligibleRoomsArray = _getEligibleRooms(roomLocationArray)
-
+    
     return eligibleRoomsArray
   }
 
@@ -17,12 +17,12 @@ var geoparseHelper = (function(){
         eligibleRoomsArray.push(roomLocationArray[i])
       }
     }
-
     return eligibleRoomsArray
   }
 
   var _distanceFromRoom = function(roomObject){
-      var distanceInMiles = geolocationOperations.calculateDistance(userFactory.getUserValue("userLatitude"), userFactory.getUserValue("userLongitude"), roomObject["roomLatitude"], roomObject["roomLongitude"])
+    
+      var distanceInMiles = geolocationOperations.calculateDistance(self.userInfo.userLatitude, self.userInfo.userLongitude, roomObject["roomLatitude"], roomObject["roomLongitude"])
 
       var distanceInFeet = distanceInMiles / 5280
 
@@ -32,7 +32,8 @@ var geoparseHelper = (function(){
   }
 
   var _roomIsEligible = function(roomObject) {
-    var userLocation = [userFactory.getUserValue('userLatitude'), userFactory.getUserValue('userLongitude')]
+    
+    var userLocation = [self.userInfo.userLatitude, self.userInfo.userLongitude]
     var roomLocation = [roomObject['roomLatitude'], roomObject['roomLongitude']]
     return geolocationOperations.inRange(userLocation, roomLocation)
   }
@@ -42,7 +43,7 @@ var geoparseHelper = (function(){
     for (var i = 0; i < roomNames.length; i++){
       var roomLatitude = _getRoomLatitude(roomNames[i])
       var roomLongitude = _getRoomLongitude(roomNames[i])
-      var userCount = firebaseHelper.getUserCount(roomNames[i])
+      var userCount = _getUserCount(roomNames[i])
 
       roomLocationArray.push({name: roomNames[i], roomLatitude: roomLatitude, roomLongitude: roomLongitude, userCount: userCount})
     }
@@ -51,19 +52,33 @@ var geoparseHelper = (function(){
   }
 
   var _getRoomLatitude = function(roomName) {
-    var roomLatitudeUrl = ROOM_LIST_PATH + roomName + '/location/latitude'
-    var roomLatitudeFirebase = firebaseHelper.createFireBase(roomLatitudeUrl)
-    var latitude = firebaseHelper.getFirebaseValue(roomLatitudeFirebase)
+    var roomLatitudeUrl = PB.firebaseUrlConstants.ROOM_LIST_PATH + roomName + '/location/latitude'
+    var roomLatitudeFirebase = firebaseFunctions.createFireBase(roomLatitudeUrl)
+    var latitude = firebaseFunctions.getFirebaseValue(roomLatitudeFirebase)
 
     return latitude
   }
 
   var _getRoomLongitude = function(roomName) {
-    var roomLongitudeUrl = ROOM_LIST_PATH + roomName + '/location/longitude'
-    var roomLongitudeFirebase = firebaseHelper.createFireBase(roomLongitudeUrl)
-    var longitude = firebaseHelper.getFirebaseValue(roomLongitudeFirebase)
+    var roomLongitudeUrl = PB.firebaseUrlConstants.ROOM_LIST_PATH + roomName + '/location/longitude'
+    var roomLongitudeFirebase = firebaseFunctions.createFireBase(roomLongitudeUrl)
+    var longitude = firebaseFunctions.getFirebaseValue(roomLongitudeFirebase)
 
     return longitude
+  }
+
+  var _getUserCount = function(roomName) {
+    var userPresenceListUrl = PB.firebaseUrlConstants.ROOM_LIST_PATH + roomName + '/presentUsers'
+    var userPresenceFirebase = firebaseFunctions.createFireBase(userPresenceListUrl)
+    var userPresenceListObject = firebaseFunctions.getFirebaseValue(userPresenceFirebase)
+
+    if (userPresenceListObject == null) {
+      var userCount = 0
+    } else {
+      var userCount = randomHelpers.getObjectSize(userPresenceListObject)
+    } 
+
+    return userCount
   }
 
   return {
