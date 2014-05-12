@@ -7,40 +7,37 @@ PB.Controllers.RoomList = function(model, view, masterController){
 
 PB.Controllers.RoomList.prototype = {
   bindListeners: function(){
-  	// We don't want to try to get rooms until we know we got the data
-  	// back from Firebase, so we make a custom event listener and tell the
-  	// roomListModel to summon those rooms
   	new CustomEvent('gotFirebaseRoomsData')
     $(document).on('gotFirebaseRoomsData', this.summonRooms.bind(this))
-
-    
-    // When a user clicks on the 'create room' button, we tell the Master controller that
-    // it is time to create a room
 
     $('body').on("click", '#create_room', function() {
       this.masterController.createNewChatRoom()
     }.bind(this))
 
+    $('.room-list').on("click", ".individual_room", this.parseRoomName.bind(this))
 
 
-
-
-    // When a user clicks on a specific room, we parse out that room and
-    // send it to the Master Controller
-    // $('.room-list').on("click", ".individual_room", this.handleUserRoomAssignment.bind(this))
 
     // $(document).on('gotLocations', this.updateGeoLocation.bind(this))
 
   },
 
   summonRooms: function(){
-  	// Asks the model to get the list of active rooms
     var activeRooms = this.model.getActiveRooms()
-
-    // Tells the view to draw the rooms using that room list
     this.view.drawRoomList(activeRooms)
   },
 
+  parseRoomName: function() {
+    var $room = $(event.target)
+    var roomName = $room.data('id')
+    $.event.trigger("readyToMakeRoom", roomName)
+    // var test = this.objectToArray(Object.userLocations)
+    // if(test.length < 3){
+    //   this.sendInfoToChatRoom(chatroom);
+    //   this.getInfoFromChatroom(chatroom);
+    // }
+    // this.sendUserToChatroom(chatroom)
+  },
   // updateGeoLocation: function(e, eventData) {
   //   var firebaseUrl = ROOM_LIST_PATH + eventData.roomName + '/location'
   //   var objects = []
@@ -59,7 +56,7 @@ PB.Controllers.RoomList.prototype = {
   // },
   // sendUserToChatroom: function(roomPath){
   //   var firebaseRoomUrl = BASE_URL + roomPath
-  //   $.event.trigger("readyToMakeRoom", roomPath)
+  //   
   // },
 
   // sendInfoToChatRoom: function(roomPath) {
@@ -70,16 +67,6 @@ PB.Controllers.RoomList.prototype = {
   //   // }
   // },
 
-  // handleUserRoomAssignment: function() {
-  //   var $room = $(event.target)
-  //   var chatroom = $room.data('id')
-  //   var test = this.objectToArray(Object.userLocations)
-  //   if(test.length < 3){
-  //     this.sendInfoToChatRoom(chatroom);
-  //     this.getInfoFromChatroom(chatroom);
-  //   }
-  //   this.sendUserToChatroom(chatroom)
-  // },
   // objectToArray: function(object){
   //   var collection = []
   //   for(var i in object){

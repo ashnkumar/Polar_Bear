@@ -24,6 +24,18 @@ PB.Controllers.Room.prototype = {
     this.view.bindChatWindowButtons(roomName, userColor, userIcon)
    },
 
+  makeExistingRoom: function(roomName) {
+    this.model.makeExistingFirebaseRoom(roomName)
+    this.masterController.setUserPresence(roomName)
+
+    var userIcon = this.masterController.setUserIcon(roomName)
+    var userColor = this.masterController.setUserColor(roomName)
+
+    this.bindCustomListener(roomName, userColor, userIcon)
+    this.view.drawChatroom(roomName, userColor, userIcon)
+
+  },
+
 	makeNewRoom: function() {
 	 	var roomName = randomHelpers.makeRandomRoomName()
 	 	this.model.createNewFirebaseRoom(roomName)

@@ -1,10 +1,3 @@
-// The PB global namespace holds all the components, including
-// the base URL for the firebase back-end server
-// The ROOM_LIST_PATH references the room_list folder within the main root Firebase server. This
-// holds the names of the rooms, their locations, present users and available icons. This way, we
-// only have to query this specific reference instead of downloading the entire Firebase server
-// everytime we want to get a list of rooms or present users in one particular room
-
 PB = {
   Controllers: ['Master', 'User', 'RoomList'],
   Views: ['RoomList', 'Room'],
@@ -22,11 +15,7 @@ $('document').ready(function() {
 
 PB.StartApp = {
   initialize: function() {
-    // We immediately check the geolocation of the user, as this
-    // is the crux of our application
     if(navigator.geolocation) {
-      // If we can get geolocation through HTML5, we perform the appropriate action based on a successful
-      // location, unsuccessful location, and a default operation (per HTML5 geolocation documentation)
       navigator.geolocation.getCurrentPosition(this.geoSuccess, this.geoFailure, this.geodefaultOps)
     } else {
       alert("Sorry, you cannot be geolocated. Please try another device or browser.")
@@ -34,13 +23,8 @@ PB.StartApp = {
   },
 
   geoSuccess: function(position){
-    // On success, we initialize a MasteController with the user's
-    // position
     var userPosition = position;
-
     var masterController = new PB.Controllers.Master(userPosition)
-
-    // PolarBear.fireRoomListEvents()
   },
 
   geoFailure: function(position) {
@@ -48,7 +32,6 @@ PB.StartApp = {
   },
 
   geodefaultOps: {
-    // Per HTML5 documentation
     enableHighAccuracy: true, timeout: 1000, maximumAge: 0
   }
 

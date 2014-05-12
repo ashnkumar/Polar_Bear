@@ -2,24 +2,14 @@ PB.Controllers.Master = function(userPosition) {
 	
 	this.userPosition = userPosition
 	this.userController = new PB.Controllers.User(this.userPosition)
-	
-	// As soon as it is initialized, the Master sends the user's location
-	// to the userController for processing
 	this.sendUserInformation()
-
-	// When initialized, we make a custom event to let us know when the
-	// user has clicked a room, so we can start making it
 	this.prepareExistingRoomListener()
-
-	// We then make the RoomListMVC
 	this.prepareRoomList()
 }
 
 PB.Controllers.Master.prototype = {
 
 	sendUserInformation: function() {
-		// The Master controller gives the user info to the userController, and
-		// tells it to create the userInformation that will be passed around the entire app	
 		this.userController.makeUserInformation()
 	},
 
@@ -38,13 +28,12 @@ PB.Controllers.Master.prototype = {
 	},
 
 	prepareExistingRoomListener: function() {
-		// var self = this;
-  //   new CustomEvent('readyToMakeRoom', {'chatRoomUrl': ''})
+		var self = this;
+    new CustomEvent('readyToMakeRoom', {'chatRoomUrl': ''})
     
-  //   $(document).on('readyToMakeRoom', function(event, roomPath) {
-  //     var chatRoomUrl = BASE_URL + roomPath
-  //     self.prepareRoom(chatRoomUrl, roomPath)
-  //   })
+    $(document).on('readyToMakeRoom', function(event, roomName) {
+      self.prepareExistingChatRoom(roomName)
+    })
 	},
 
 	prepareRoomList: function() {
@@ -71,6 +60,19 @@ PB.Controllers.Master.prototype = {
 		var chatroomController = new PB.Controllers.Room(chatroom, chatroomView, this)
 
 		chatroomController.makeNewRoom()
+	},
+
+	prepareExistingChatRoom: function(roomName) {
+		var chatroomDomSelectors = {
+			room: '.room',
+      roomTemplate: '#room-template'
+		}
+
+		var chatroomView = new PB.Views.Room(chatroomDomSelectors)
+		var chatroom = new PB.Models.Room()
+		var chatroomController = new PB.Controllers.Room(chatroom, chatroomView, this)
+
+		chatroomController.makeExistingRoom(roomName)
 	}
 
 }
