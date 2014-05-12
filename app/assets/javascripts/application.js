@@ -15,3 +15,9 @@
 //= require handlebars
 //= require initialize
 //= require controllers/masterController
+//= require controllers/userController
+//= require controllers/roomListController
+//= require models/roomList
+//= require views/roomListView
+//= require modules/firebaseFunctions
+

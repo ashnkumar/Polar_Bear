@@ -6,9 +6,9 @@
 // everytime we want to get a list of rooms or present users in one particular room
 
 PB = {
-  Controllers: ['MasterController'],
-  views: [''],
-  models: [''],
+  Controllers: ['Master', 'User', 'RoomList'],
+  Views: ['RoomList'],
+  Models: ['RoomList'],
   modules: [''],
   firebaseUrlConstants: {
     BASE_URL: 'https://polar-bear2.firebaseio.com/',
@@ -38,11 +38,8 @@ PB.StartApp = {
     // position
     var userPosition = position;
 
-    masterController = new PB.Controllers.MasterController(userPosition)
+    var masterController = new PB.Controllers.Master(userPosition)
 
-    debugger
-    // _createUserInfo(position.coords.latitude, position.coords.longitude)
-    
     // PolarBear.fireRoomListEvents()
   },
 
@@ -61,24 +58,11 @@ PB.StartApp = {
   // },
 
   // bindRoomListener: function() {
-  //   var self = this;
-
-  //   new CustomEvent('readyToMakeRoom', {'chatRoomUrl': ''})
-  //   $(document).on('readyToMakeRoom', function(event, roomPath) {
-  //     var chatRoomUrl = BASE_URL + roomPath
-  //     self.prepareRoomMVC(chatRoomUrl, roomPath)
-  //   })
+  //   
   // },
 
   // prepareRoomListMVC: function(){
-  //   var roomListDomSelectors = {
-  //     roomList: '.room-list',
-  //     roomListTemplate: '#room-list-template'
-  //   }
-  //   var roomListView = new PB.RoomListView(roomListDomSelectors)
-  //   var roomList = new PB.RoomList()
-  //   var roomListController = new PB.RoomListController(roomList, roomListView)
-  //   roomListController.listeners()
+
   // },
 
   // prepareRoomMVC: function(chatRoomUrl, roomPath){

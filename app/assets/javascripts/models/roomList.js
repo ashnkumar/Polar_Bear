@@ -1,14 +1,20 @@
-PB.RoomList = function(name){
-  new CustomEvent('gotFirebaseRoomsData')
-  this.roomListFromFirebase = firebaseHelper.createFireBase(ROOM_LIST_PATH);
+PB.Models.RoomList = function(){
+  // When the model is created, it creates a ref to the room_list
+  this.roomListFromFirebase = firebaseFunctions.createFireBase(PB.firebaseUrlConstants.ROOM_LIST_PATH);
   this.roomListFromFirebase.on('value', this.returnDatabase.bind(this));
 }
 
-PB.RoomList.prototype = {
-  returnDatabase: function( snapshot ){
-   this.database = snapshot.val()
+PB.Models.RoomList.prototype = {
+  returnDatabase: function(snapshot){
+   this.entireDatabase = snapshot.val()
    $.event.trigger('gotFirebaseRoomsData')
   },
+
+  getActiveRooms: function() {
+  	debugger
+  },
+
+
 
   returnRooms: function( fireBaseRoomsData){
     var roomNames = Object.keys(fireBaseRoomsData)
