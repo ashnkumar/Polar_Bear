@@ -14,17 +14,5 @@ PB.Models.RoomList.prototype = {
   	var activeRoomObjectArray = geoParser.parseRoomsToDisplayEligibleRooms()
   	return activeRoomObjectArray
   },
-
-  // returnRooms: function( fireBaseRoomsData){
-  //   var roomNames = Object.keys(fireBaseRoomsData)
-  //   var roomArray = []
-  //   for(var i = 0; i < roomNames.length; i++){
-
-  //     roomArray.push({name: roomNames[i], userCount: userCount})
-  //     console.log(roomNames[i]+': '+userCount)
-  //   }
- 
-  //   return roomArray
-  // }
 }
 

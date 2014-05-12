@@ -1,10 +1,10 @@
 var firebaseFunctions = (function() {
-  var _createFirebase = function(firebaseUrl) {
+  var createFirebase = function(firebaseUrl) {
     var newFirebase = new Firebase(firebaseUrl)
     return newFirebase
   }
 
-  var _getFirebaseValue = function(firebaseObject) {
+  var getFirebaseValue = function(firebaseObject) {
     var val;
     firebaseObject.on('value', function(snapshot) {
       val = snapshot.val()
@@ -18,32 +18,13 @@ var firebaseFunctions = (function() {
   // }
 
 
-  
+  var pushToFirebase = function(roomName, userMessage, userColor, userIcon){
 
+    var chatroomUrl = PB.firebaseUrlConstants.BASE_URL + roomName
+    var chatroomFirebase = createFirebase(chatroomUrl)
 
-  // var _pushToFirebase = function(firebaseUrl, userMessage, room){
-  //   var self = this;
-  //   var chatRoom = new Firebase(firebaseUrl)
-  //   chatRoom.push({userIcon: self.userIcon, message: userMessage, color: room.color})
-  // }
-
-  // var _bindChatWindowButtons = function(firebaseServer, room) {
-  //   console.log(room.color)
-  //   var chatRoom = firebaseServer
-  //   chatRoom.limit(10).on('child_added', function (snapshot) {
-  //     var message = snapshot.val();
-  //     $('<div class="elevencol '+message.color+'">').html('<i class="fa fa-'+message.userIcon+' fa-2x"></i>'+message.message).fadeIn().appendTo($('#messagesDiv'));
-  //     $('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
-  //   })
-  // }
-  // // testin this function. add it to a basicHelper module?
-  // Object.size = function(obj) {
-  //     var size = 0, key;
-  //     for (key in obj) {
-  //         if (obj.hasOwnProperty(key)) size++;
-  //     }
-  //     return size;
-  // };
+    chatroomFirebase.push({userIcon: userIcon, message: userMessage, color: userColor})
+  }
 
   // var _createFirebaseUserLocations = function(fbInfo) {
 
@@ -78,19 +59,7 @@ var firebaseFunctions = (function() {
 
     // Picks a random key from the hash
 
-    var identifiedKeyInHash = 'user' + randomIndexInHash
-    var iconForUser = availableIconsHash[identifiedKeyInHash]
-    this.userIcon = iconForUser
 
-    // Identify the key in the hash and make a firebase reference to it
-    var usersKeyUrl = availableIconsUrl + '/' + identifiedKeyInHash
-    var usersKeyFirebase = new Firebase(usersKeyUrl)
-
-    // Delete that element from the hash since the user is chatting
-    usersKeyFirebase.remove()
-
-    // When he disconnects, add it back to the hash
-    usersKeyFirebase.onDisconnect().set(iconForUser)
   }
 
   var _getUserCount = function(roomName){
@@ -98,11 +67,10 @@ var firebaseFunctions = (function() {
   }
 
   return {
-    createFirebase: _createFirebase,
-    getFirebaseValue: _getFirebaseValue,
-    getUserCount: _getUserCount
-    // createRoom: _createRoom,
-    // pushToFirebase: _pushToFirebase,
+    createFirebase: createFirebase,
+    getFirebaseValue: getFirebaseValue,
+    getUserCount: _getUserCount,
+    pushToFirebase: pushToFirebase,
     // updateFireBase: _updateFireBase,
     // bindChatWindowButtons: _bindChatWindowButtons,
     // setUserToRoom: _setUserToRoom,

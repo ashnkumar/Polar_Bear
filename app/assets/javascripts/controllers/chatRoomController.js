@@ -5,38 +5,23 @@ PB.Controllers.Room = function(model, view, masterController){
 }
 
 PB.Controllers.Room.prototype = {
-  // drawRoom: function(roomName){
-  //   this.view.drawChatRoom(roomName);
-  //   $(document).on('ajax-back', this.bindMessageListeners.bind(this) )
-  // },
-  // bindMessageListeners: function(){
-  //  $('.button').remove()
-  //  $(document).bind('keypress',pressed);
-  //  var self = this;
-  //  function pressed(e){
-  //     if (e.keyCode == 13){
-  //       var text = $("#messageInput").val();
-  //       firebaseHelper.pushToFirebase(self.model.chatRoomUrl, text, self.model);
-  //       $("#messageInput").val('');
-  //      }
-  //  };
-  //  this.model.randomizeColor()
-  //  firebaseHelper.bindChatWindowButtons(this.model.firebaseServer, this.model)
-  // },
+	bindCustomListener: function(roomName, userColor, userIcon) {
+		$(document).on('ajax-back', this.bindFirebaseListeners(roomName, userColor, userIcon)).bind(this)
+	},
 
   // We need to bind the room message input box with this event listener
-  bindListeners: function() {
+  bindFirebaseListeners: function(roomName, userColor, userIcon) {
    	$('.button').remove()
    	$(document).bind('keypress',pressed);
    	var self = this;
    	function pressed(e){
       if (e.keyCode == 13) {
         var text = $("#messageInput").val();
-        // firebaseHelper.pushToFirebase(self.model.chatRoomUrl, text, self.model);
-        console.log(text)
+        firebaseFunctions.pushToFirebase(roomName, text, userColor, userIcon);
         $("#messageInput").val('');
       }
     }
+    this.view.bindChatWindowButtons(roomName, userColor, userIcon)
    },
 
 	makeNewRoom: function() {
@@ -46,7 +31,8 @@ PB.Controllers.Room.prototype = {
 
 	 	var userIcon = this.masterController.setUserIcon(roomName)
 	 	var userColor = this.masterController.setUserColor(roomName)
-	 	debugger
-	 	this.view.drawRoom(roomName, userColor, userIcon)
+
+	 	this.bindCustomListener(roomName, userColor, userIcon)
+	 	this.view.drawChatroom(roomName, userColor, userIcon)
 	}
 }

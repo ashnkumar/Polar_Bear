@@ -69,7 +69,7 @@ PB.Controllers.Master.prototype = {
 		var chatroomView = new PB.Views.Room(chatroomDomSelectors)
 		var chatroom = new PB.Models.Room()
 		var chatroomController = new PB.Controllers.Room(chatroom, chatroomView, this)
-		// chatroomController.bindListeners()
+
 		chatroomController.makeNewRoom()
 	}
 

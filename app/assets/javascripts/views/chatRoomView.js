@@ -4,7 +4,19 @@ PB.Views.Room = function (chatroomDomSelectors){
 }
 
 PB.Views.Room.prototype = {
-  drawChatRoom: function(roomName){
+
+  bindChatWindowButtons: function(roomName, userColor, userIcon) {
+    var chatroomUrl = PB.firebaseUrlConstants.BASE_URL + roomName
+    var chatroomFirebase = firebaseFunctions.createFirebase(chatroomUrl)
+
+    chatroomFirebase.limit(10).on('child_added', function (snapshot) {
+      var message = snapshot.val();
+      $('<div class="elevencol '+message.color+'">').html('<i class="fa fa-'+message.userIcon+' fa-2x"></i>'+message.message).fadeIn().appendTo($('#messagesDiv'));
+      $('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
+    })
+  },
+
+  drawChatroom: function(roomName, userColor, userIcon) {
        var roomName = roomName
        self = this
        $.ajax({
