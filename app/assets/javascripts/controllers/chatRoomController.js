@@ -9,7 +9,6 @@ PB.Controllers.Room.prototype = {
 		$(document).on('ajax-back', this.bindFirebaseListeners(roomName, userColor, userIcon)).bind(this)
 	},
 
-  // We need to bind the room message input box with this event listener
   bindFirebaseListeners: function(roomName, userColor, userIcon) {
    	$('.button').remove()
    	$(document).bind('keypress',pressed);
@@ -33,7 +32,6 @@ PB.Controllers.Room.prototype = {
 
     this.bindCustomListener(roomName, userColor, userIcon)
     this.view.drawChatroom(roomName, userColor, userIcon)
-
   },
 
 }

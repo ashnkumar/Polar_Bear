@@ -31,6 +31,8 @@ PB.Controllers.RoomList.prototype = {
     var $room = $(event.target)
     var roomName = $room.data('id')
     $.event.trigger("readyToMakeRoom", roomName)
+
+    
     // var test = this.objectToArray(Object.userLocations)
     // if(test.length < 3){
     //   this.sendInfoToChatRoom(chatroom);
