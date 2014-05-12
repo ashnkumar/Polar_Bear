@@ -1,5 +1,6 @@
-PB.Controllers.User = function(userPosition){
+PB.Controllers.User = function(userPosition, masterController) {
 	this.userPosition = userPosition
+	this.masterController = masterController
 }
 
 PB.Controllers.User.prototype = {
@@ -47,5 +48,30 @@ PB.Controllers.User.prototype = {
 		var userId = justPushed.name()
     var userToDelete = firebaseFunctions.createFirebase(userPresenceListUrl + '/' + userId)
     userToDelete.onDisconnect().remove()
+	},
+
+	addUserLocationToNewRoom: function(roomName) {
+		var userLocationsUrl = PB.firebaseUrlConstants.ROOM_LIST_PATH + roomName + '/user_locations'
+		var userLocationsFirebase = firebaseFunctions.createFirebase(userLocationsUrl)
+		userLocationsFirebase.push({latitude: self.userInfo.userLatitude, longitude: self.userInfo.userLongitude})
+	},
+
+	addUserLocationToRoom: function(roomName) {
+		var userLocationsUrl = PB.firebaseUrlConstants.ROOM_LIST_PATH + roomName + '/user_locations'
+		var userLocationsFirebase = firebaseFunctions.createFirebase(userLocationsUrl)
+		var currentUserLocations = firebaseFunctions.getFirebaseValue(userLocationsFirebase)
+
+		var roomStatus = this.masterController.returnRoomStatus(roomName)
+
+		if(roomStatus === 'false') {
+			var numberOfCurrentUserLocations = randomHelpers.getObjectSize(currentUserLocations)
+			if(numberOfCurrentUserLocations === 2) {
+				userLocationsFirebase.push({latitude: self.userInfo.userLatitude, longitude: self.userInfo.userLongitude})
+				var lockedLocation = this.masterController.getCentroid(roomName)
+				this.masterController.setRoomToLocked(roomName, lockedLocation)
+			} else {
+				userLocationsFirebase.push({latitude: self.userInfo.userLatitude, longitude: self.userInfo.userLongitude})
+			}
+		}
 	}
 }

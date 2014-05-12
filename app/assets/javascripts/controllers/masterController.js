@@ -1,7 +1,7 @@
 PB.Controllers.Master = function(userPosition) {
 	
 	this.userPosition = userPosition
-	this.userController = new PB.Controllers.User(this.userPosition)
+	this.userController = new PB.Controllers.User(this.userPosition, this)
 	this.sendUserInformation()
 	this.prepareExistingRoomListener()
 	this.prepareRoomList()
@@ -25,6 +25,14 @@ PB.Controllers.Master.prototype = {
 
 	setUserPresence: function(roomName) {
 		this.userController.setUserPresence(roomName)
+	},
+
+	addUserLocationToNewRoom: function(roomName) {
+		this.userController.addUserLocationToNewRoom(roomName)
+	},
+
+	addUserLocationToRoom: function(roomName) {
+		this.userController.addUserLocationToRoom(roomName)
 	},
 
 	prepareExistingRoomListener: function() {
@@ -63,9 +71,24 @@ PB.Controllers.Master.prototype = {
 
 		var chatroomView = new PB.Views.Room(chatroomDomSelectors)
 		var chatroom = new PB.Models.Room()
-		var chatroomController = new PB.Controllers.Room(chatroom, chatroomView, this)
+		this.chatroomController = new PB.Controllers.Room(chatroom, chatroomView, this)
 
-		chatroomController.makeRoom(roomName, newRoom)
+		this.chatroomController.makeRoom(roomName, newRoom)
+	},
+
+	returnRoomStatus: function(roomName) {
+		var roomStatus = this.chatroomController.returnRoomStatus(roomName)
+		return roomStatus
+	},
+
+	getCentroid: function(roomName) {
+		var lockedLocation = this.chatroomController.getCentroid(roomName)
+		return lockedLocation
+	},
+
+	setRoomToLocked: function(roomName, lockedLocation) {
+		this.chatroomController.setRoomToLocked(roomName)
+		this.chatroomController.lockRoomPositionWithCentroid(roomName, lockedLocation)
 	}
 
 }

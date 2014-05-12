@@ -26,6 +26,7 @@ var geolocationOperations = (function(){
       longSum += longFloat
     }
     var centroid = { latitude: latSum / locationsLength, longitude: longSum / locationsLength }
+
     return centroid
   }
 

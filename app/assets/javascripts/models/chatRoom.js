@@ -1,4 +1,4 @@
-PB.Models.Room = function(){
+PB.Models.Room = function() {
   // this.chatRoomUrl = chatRoomUrl
   // this.firebaseServer = firebaseHelper.createFireBase(chatRoomUrl)
   // this.assignUserToRoom(chatRoomUrl, roomPath)
@@ -11,12 +11,12 @@ PB.Models.Room.prototype = {
     var chatroomFirebase = firebaseFunctions.createFirebase(chatroomUrl)
 
     if(newRoom) {
-      this.setRoomLocation(roomName)
+      this.setInitialRoomLocation(roomName)
       this.setRoomIcons(roomName)
     }
   },
 
-  setRoomLocation: function(roomName) {
+  setInitialRoomLocation: function(roomName) {
     var roomListRoomPath = PB.firebaseUrlConstants.ROOM_LIST_PATH + roomName
 
     var latitudePath = firebaseFunctions.createFirebase(roomListRoomPath + '/location/latitude')
@@ -26,6 +26,17 @@ PB.Models.Room.prototype = {
     var longitudePath = firebaseFunctions.createFirebase(roomListRoomPath + '/location/longitude')
     var roomLong = self.userInfo.userLongitude;
     longitudePath.set(Number(roomLong))
+  },
+
+  setLockedRoomLocation: function(roomName, lockedLocation) {
+    var roomListRoomPath = PB.firebaseUrlConstants.ROOM_LIST_PATH + roomName
+
+    var latitudePath = firebaseFunctions.createFirebase(roomListRoomPath + '/location/latitude')
+    latitudePath.set(lockedLocation.latitude)
+
+    var longitudePath = firebaseFunctions.createFirebase(roomListRoomPath + '/location/longitude')
+    longitudePath.set(lockedLocation.longitude)
+    debugger
   },
 
   setRoomIcons: function(roomName) {
