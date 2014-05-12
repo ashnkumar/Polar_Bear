@@ -1,9 +1,9 @@
-RoomListApp.RoomListController = function(model, view){
+PB.RoomListController = function(model, view){
   this.model = model
   this.view = view
 }
 
-RoomListApp.RoomListController.prototype = {
+PB.RoomListController.prototype = {
   listeners: function(){
     $(document).on('gotFirebaseRoomsData', this.summonRooms.bind(this) )
     $('.room-list').on("click", ".individual_room", this.handleUserRoomAssignment.bind(this))
@@ -18,7 +18,7 @@ RoomListApp.RoomListController.prototype = {
     for(var i in eventData.userLocation) {
       objects.push(eventData.userLocation[i])
     }
-    var centroid = geoHelper.getCentroid(objects)
+    var centroid = geolocationOperations.getCentroid(objects)
     firebaseHelper.updateFireBase(firebaseUrl, { latitude: centroid.latitude, longitude: centroid.longitude })
   },
   summonRooms: function(){

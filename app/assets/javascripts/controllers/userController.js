@@ -1,7 +1,7 @@
-ChatRoomApp.UserController = function(){
+PB.UserController = function(){
 
 }
 
-ChatRoomApp.UserController.prototype = {
-
+PB.UserController.prototype = {
+	
 }

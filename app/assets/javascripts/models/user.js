@@ -1,7 +1,7 @@
-ChatRoomApp.User = function(){
+PB.User = function(){
 
 }
 
-ChatRoomApp.User.prototype = {
+PB.User.prototype = {
 
 }

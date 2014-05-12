@@ -1,9 +1,9 @@
-ChatRoomApp.RoomView = function (domSelectors){
+PB.RoomView = function (domSelectors){
   this.room = domSelectors["room"]
   this.roomTemplate = domSelectors["roomTemplate"]
 }
 
-ChatRoomApp.RoomView.prototype = {
+PB.RoomView.prototype = {
   drawChatRoom: function(roomName){
        var roomName = roomName
        self = this

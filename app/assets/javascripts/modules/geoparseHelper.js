@@ -22,7 +22,7 @@ var geoparseHelper = (function(){
   }
 
   var _distanceFromRoom = function(roomObject){
-      var distanceInMiles = geoHelper.calculateDistance(userFactory.getUserValue("userLatitude"), userFactory.getUserValue("userLongitude"), roomObject["roomLatitude"], roomObject["roomLongitude"])
+      var distanceInMiles = geolocationOperations.calculateDistance(userFactory.getUserValue("userLatitude"), userFactory.getUserValue("userLongitude"), roomObject["roomLatitude"], roomObject["roomLongitude"])
 
       var distanceInFeet = distanceInMiles / 5280
 
@@ -34,7 +34,7 @@ var geoparseHelper = (function(){
   var _roomIsEligible = function(roomObject) {
     var userLocation = [userFactory.getUserValue('userLatitude'), userFactory.getUserValue('userLongitude')]
     var roomLocation = [roomObject['roomLatitude'], roomObject['roomLongitude']]
-    return geoHelper.inRange(userLocation, roomLocation)
+    return geolocationOperations.inRange(userLocation, roomLocation)
   }
 
   var _getRoomLocations = function(roomNames) {

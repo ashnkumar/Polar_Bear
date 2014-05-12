@@ -1,7 +1,7 @@
-ChatRoomApp.UserView = function (){
+PB.UserView = function (){
 
 }
 
-ChatRoomApp.UserView.prototype = {
+PB.UserView.prototype = {
 
 }

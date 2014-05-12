@@ -1,7 +1,19 @@
-// var userFactory = (function(){
-//   //'this' is Window
-//   self = this;
+// var initialGeolocation = (function() {
+	
+// 	self = this;
 
+	// The following three methods handle the initial case of finding the user
+	//, not finding the user, and default operations, respectively
+ 
+
+ 
+
+
+
+
+  // If user is able to be found, we create a user information that acts in
+  // a similar way as a session or cookie, and holds information about that 
+  // user which will be applicable throughout the app
 //   var _createUserInfo = function(userLatitude, userLongitude){
 //     self.userValue = { userToken: _createUserToken(),
 //                        userLatitude: userLatitude,
@@ -22,12 +34,13 @@
 //     return text;
 //   }
 
+  
+
 //   return {
 //     success: _success,
 //     failure: _failure,
 //     defaultOps: _defaultOps,
 //     getUserValue: _getUserValue
-
 //   }
 
 // }())

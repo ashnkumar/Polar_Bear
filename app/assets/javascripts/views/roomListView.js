@@ -1,10 +1,10 @@
 
-RoomListApp.RoomListView = function(domSelectors){
+PB.RoomListView = function(domSelectors){
   this.roomList = domSelectors["roomList"]
   this.roomListTemplate = domSelectors["room-list-template"]
 }
 
-RoomListApp.RoomListView.prototype = {
+PB.RoomListView.prototype = {
   drawRoomList: function(roomList){
      var rooms = {rooms: roomList}
      $.ajax({

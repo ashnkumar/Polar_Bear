@@ -1,10 +1,10 @@
-RoomListApp.RoomList = function(name){
+PB.RoomList = function(name){
   new CustomEvent('gotFirebaseRoomsData')
   this.roomListFromFirebase = firebaseHelper.createFireBase(ROOM_LIST_PATH);
   this.roomListFromFirebase.on('value', this.returnDatabase.bind(this));
 }
 
-RoomListApp.RoomList.prototype = {
+PB.RoomList.prototype = {
   returnDatabase: function( snapshot ){
    this.database = snapshot.val()
    $.event.trigger('gotFirebaseRoomsData')
