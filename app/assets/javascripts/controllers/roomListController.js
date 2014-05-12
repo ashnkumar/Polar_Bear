@@ -2,7 +2,6 @@ PB.Controllers.RoomList = function(model, view, masterController){
   this.model = model
   this.view = view
   this.masterController = masterController
-
 }
 
 PB.Controllers.RoomList.prototype = {

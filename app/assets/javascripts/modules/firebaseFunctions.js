@@ -19,7 +19,6 @@ var firebaseFunctions = (function() {
 
 
   var pushToFirebase = function(roomName, userMessage, userColor, userIcon){
-
     var chatroomUrl = PB.firebaseUrlConstants.BASE_URL + roomName
     var chatroomFirebase = createFirebase(chatroomUrl)
 
@@ -46,30 +45,9 @@ var firebaseFunctions = (function() {
   //   })
   // }
 
-  var _setUserToRoom = function(chatRoomUrl, roomPath){
-
-    // Adds the user to the 'present users' list
-    
-
-    // Sets the user to be deleted from the 'presence' list when he disconnects
-    
-
-    // Retrieves list of available user icons, comes in as a hash
-   
-
-    // Picks a random key from the hash
-
-
-  }
-
-  var _getUserCount = function(roomName){
-
-  }
-
   return {
     createFirebase: createFirebase,
     getFirebaseValue: getFirebaseValue,
-    getUserCount: _getUserCount,
     pushToFirebase: pushToFirebase,
     // updateFireBase: _updateFireBase,
     // bindChatWindowButtons: _bindChatWindowButtons,

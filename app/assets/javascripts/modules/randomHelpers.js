@@ -19,7 +19,16 @@ var randomHelpers = (function(){
 		return randomIndexInHash;
 	}
 
+	createUserToken = function() {
+		var text = "";
+    var possible = possible || "ABCDEFGHIJKLMNOPQRSTUVWX YZabcdefghijklmnopqrstuvwxyz0123456789";
 
+    for( var i=0; i < 15; i++ ) {
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+
+    return text;
+	}
 
 
 
@@ -28,7 +37,8 @@ var randomHelpers = (function(){
 	return {
 		getObjectSize: getObjectSize,
 		makeRandomRoomName: makeRandomRoomName,
-		getRandomIndex: getRandomIndex
+		getRandomIndex: getRandomIndex,
+		createUserToken: createUserToken
 	}
 
 

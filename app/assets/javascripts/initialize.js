@@ -7,11 +7,13 @@ PB = {
     BASE_URL: 'https://polar-bear2.firebaseio.com/',
     ROOM_LIST_PATH: 'https://polar-bear2.firebaseio.com/room_list/'
   }
- };
+};
+
 
 $('document').ready(function() {
   PB.StartApp.initialize();
-} );
+});
+
 
 PB.StartApp = {
   initialize: function() {
@@ -34,32 +36,6 @@ PB.StartApp = {
   geodefaultOps: {
     enableHighAccuracy: true, timeout: 1000, maximumAge: 0
   }
-
-  // fireRoomListEvents: function() {
-  //   this.bindRoomListener();
-  //   this.prepareRoomListMVC();
-  // },
-
-  // bindRoomListener: function() {
-  //   
-  // },
-
-  // prepareRoomListMVC: function(){
-
-  // },
-
-  // prepareRoomMVC: function(chatRoomUrl, roomPath){
-  //   var roomDomSelectors = {
-  //     room: '.room',
-  //     roomTemplate: '#room-template'
-  //   }
-  //   var roomView = new PB.RoomView(roomDomSelectors)
-  //   var room = new PB.Room(chatRoomUrl, roomPath)
-  //   var roomController = new PB.RoomController(room, roomView)
-  //   var roomName = {name: roomController.model.chatRoomUrl}
-  //   roomController.drawRoom(roomName)
-
-  // }
 }
 
 

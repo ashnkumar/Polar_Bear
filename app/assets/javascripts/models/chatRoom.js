@@ -5,9 +5,6 @@ PB.Models.Room = function(){
 }
 
 PB.Models.Room.prototype = {
-  // assignUserToRoom: function(chatRoomUrl, roomPath){
-  //   firebaseHelper.setUserToRoom(chatRoomUrl, roomPath)
-  // },
 
   makeFirebaseRoom: function(roomName, newRoom) {
     var chatroomUrl = PB.firebaseUrlConstants.BASE_URL + roomName
