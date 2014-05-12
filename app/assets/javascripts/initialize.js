@@ -7,8 +7,8 @@
 
 PB = {
   Controllers: ['Master', 'User', 'RoomList'],
-  Views: ['RoomList'],
-  Models: ['RoomList'],
+  Views: ['RoomList', 'Room'],
+  Models: ['RoomList', 'Room'],
   modules: [''],
   firebaseUrlConstants: {
     BASE_URL: 'https://polar-bear2.firebaseio.com/',

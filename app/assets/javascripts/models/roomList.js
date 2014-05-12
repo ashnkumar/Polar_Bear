@@ -1,6 +1,6 @@
 PB.Models.RoomList = function(){
   // When the model is created, it creates a ref to the room_list
-  this.roomListFromFirebase = firebaseFunctions.createFireBase(PB.firebaseUrlConstants.ROOM_LIST_PATH);
+  this.roomListFromFirebase = firebaseFunctions.createFirebase(PB.firebaseUrlConstants.ROOM_LIST_PATH);
   this.roomListFromFirebase.on('value', this.returnDatabase.bind(this));
 }
 

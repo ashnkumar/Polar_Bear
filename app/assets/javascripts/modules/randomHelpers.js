@@ -7,7 +7,13 @@ var randomHelpers = (function(){
 		return size;
 	}
 
+	var makeRandomRoomName = function() {
+	  var randomRoomName = Faker.Name.firstName() + Math.floor((Math.random() * 10) + 1);
+    return randomRoomName
+	}
+
 	return {
-		getObjectSize: getObjectSize
+		getObjectSize: getObjectSize,
+		makeRandomRoomName: makeRandomRoomName
 	}
 }())

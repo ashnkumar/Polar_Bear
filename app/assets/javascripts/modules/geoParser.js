@@ -1,6 +1,6 @@
 var geoParser = (function(){
 	var _parseRoomsToDisplayEligibleRooms = function() {
-    var roomListFirebaseObject = firebaseFunctions.createFireBase(PB.firebaseUrlConstants.ROOM_LIST_PATH)
+    var roomListFirebaseObject = firebaseFunctions.createFirebase(PB.firebaseUrlConstants.ROOM_LIST_PATH)
     var roomListJson = firebaseFunctions.getFirebaseValue(roomListFirebaseObject)
     var roomNames = Object.keys(roomListJson)
     var roomLocationArray = _getRoomLocations(roomNames)
@@ -53,7 +53,7 @@ var geoParser = (function(){
 
   var _getRoomLatitude = function(roomName) {
     var roomLatitudeUrl = PB.firebaseUrlConstants.ROOM_LIST_PATH + roomName + '/location/latitude'
-    var roomLatitudeFirebase = firebaseFunctions.createFireBase(roomLatitudeUrl)
+    var roomLatitudeFirebase = firebaseFunctions.createFirebase(roomLatitudeUrl)
     var latitude = firebaseFunctions.getFirebaseValue(roomLatitudeFirebase)
 
     return latitude
@@ -61,7 +61,7 @@ var geoParser = (function(){
 
   var _getRoomLongitude = function(roomName) {
     var roomLongitudeUrl = PB.firebaseUrlConstants.ROOM_LIST_PATH + roomName + '/location/longitude'
-    var roomLongitudeFirebase = firebaseFunctions.createFireBase(roomLongitudeUrl)
+    var roomLongitudeFirebase = firebaseFunctions.createFirebase(roomLongitudeUrl)
     var longitude = firebaseFunctions.getFirebaseValue(roomLongitudeFirebase)
 
     return longitude
@@ -69,7 +69,7 @@ var geoParser = (function(){
 
   var _getUserCount = function(roomName) {
     var userPresenceListUrl = PB.firebaseUrlConstants.ROOM_LIST_PATH + roomName + '/presentUsers'
-    var userPresenceFirebase = firebaseFunctions.createFireBase(userPresenceListUrl)
+    var userPresenceFirebase = firebaseFunctions.createFirebase(userPresenceListUrl)
     var userPresenceListObject = firebaseFunctions.getFirebaseValue(userPresenceFirebase)
 
     if (userPresenceListObject == null) {

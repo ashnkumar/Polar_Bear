@@ -22,5 +22,30 @@ PB.Controllers.User.prototype = {
     }
 
     return text;
+	},
+
+	setUserIcon: function() {
+
+	},
+
+	setUserColor: function() {
+    var colors = ["pink", "purple", "blue", "orange", "green", "moss", "brown", "dark-purple", "light-blue", "grey"]
+ 
+    return colors[Math.floor(Math.random()*colors.length)];
+  },
+	
+	setUserPresence: function(roomName) {
+
+		var userPresenceListUrl = PB.firebaseUrlConstants.ROOM_LIST_PATH + roomName + '/presentUsers'
+    var userPresenceFirebase = firebaseFunctions.createFirebase(userPresenceListUrl)
+    var justPushed = userPresenceFirebase.push({user_token: self.userInfo.userToken})
+    
+   	this.setUserDisconnectActions(justPushed, userPresenceListUrl)
+	},
+
+	setUserDisconnectActions: function(justPushed, userPresenceListUrl) {
+		var userId = justPushed.name()
+    var userToDelete = firebaseFunctions.createFirebase(userPresenceListUrl + '/' + userId)
+    userToDelete.onDisconnect().remove()
 	}
 }

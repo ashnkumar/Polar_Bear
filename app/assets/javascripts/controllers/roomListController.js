@@ -1,6 +1,8 @@
-PB.Controllers.RoomList = function(model, view){
+PB.Controllers.RoomList = function(model, view, masterController){
   this.model = model
   this.view = view
+  this.masterController = masterController
+
 }
 
 PB.Controllers.RoomList.prototype = {
@@ -11,15 +13,24 @@ PB.Controllers.RoomList.prototype = {
   	new CustomEvent('gotFirebaseRoomsData')
     $(document).on('gotFirebaseRoomsData', this.summonRooms.bind(this))
 
+    
+    // When a user clicks on the 'create room' button, we tell the Master controller that
+    // it is time to create a room
+
+    $('body').on("click", '#create_room', function() {
+      this.masterController.createNewChatRoom()
+    }.bind(this))
+
+
+
+
+
     // When a user clicks on a specific room, we parse out that room and
     // send it to the Master Controller
     // $('.room-list').on("click", ".individual_room", this.handleUserRoomAssignment.bind(this))
 
     // $(document).on('gotLocations', this.updateGeoLocation.bind(this))
 
-    // $('body').on("click", '#create_room', function() {
-    //   this.createChatRoom(firebaseHelper.createRoom())
-    // }.bind(this))
   },
 
   summonRooms: function(){

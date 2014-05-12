@@ -23,4 +23,7 @@
 //= require modules/firebaseFunctions
 //= require modules/geoParser
 //= require modules/geolocationOperations
+//= require controllers/chatroomController
+//= require models/chatroom
+//= require views/chatroomView
 
