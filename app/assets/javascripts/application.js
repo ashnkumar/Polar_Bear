@@ -14,3 +14,4 @@
 //= require jquery_ujs
 //= require handlebars
 //= require initialize
+//= require controllers/masterController

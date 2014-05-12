@@ -1,5 +1,12 @@
+// The PB global namespace holds all the components, including
+// the base URL for the firebase back-end server
+// The ROOM_LIST_PATH references the room_list folder within the main root Firebase server. This
+// holds the names of the rooms, their locations, present users and available icons. This way, we
+// only have to query this specific reference instead of downloading the entire Firebase server
+// everytime we want to get a list of rooms or present users in one particular room
+
 PB = {
-  controllers: [''],
+  Controllers: ['MasterController'],
   views: [''],
   models: [''],
   modules: [''],
@@ -9,36 +16,14 @@ PB = {
   }
  };
 
-//     BASE_URL = 'https://polar-bear2.firebaseio.com/',
-//     ROOM_LIST_PATH = BASE_URL + 'room_list/'
-//   } = function
-
-//   controllers = { },
-//   models = { },
-//   views = { },
-//   modules = { },
-//   
-// };
-
-// This is the base URL for the firebase back-end server
-
-// The ROOM_LIST_PATH references the room_list folder within the main root Firebase server. This
-// holds the names of the rooms, their locations, present users and available icons. This way, we
-// only have to query this specific reference instead of downloading the entire Firebase server
-// everytime we want to get a list of rooms or present users in one particular room
-
 $('document').ready(function() {
   PB.StartApp.initialize();
 } );
 
 PB.StartApp = {
   initialize: function() {
-    // We check the geolocation as soon as we start the app. If the user can't be located or denies
-    // geolocation access from our app, they cannot use the app
-    this.checkGeoLocation();
-  },
-
-  checkGeoLocation: function() {
+    // We immediately check the geolocation of the user, as this
+    // is the crux of our application
     if(navigator.geolocation) {
       // If we can get geolocation through HTML5, we perform the appropriate action based on a successful
       // location, unsuccessful location, and a default operation (per HTML5 geolocation documentation)
@@ -49,19 +34,16 @@ PB.StartApp = {
   },
 
   geoSuccess: function(position){
-    // On success, we initialize a MasteController that will initially
-    // contain a roomListController and userController
-    var userPosition = position
-    masterController = new MasterController(userPosition)
+    // On success, we initialize a MasteController with the user's
+    // position
+    var userPosition = position;
 
-    console.log("THIS IS COOL")
+    masterController = new PB.Controllers.MasterController(userPosition)
 
-
-
-
-    _createUserInfo(position.coords.latitude, position.coords.longitude)
+    debugger
+    // _createUserInfo(position.coords.latitude, position.coords.longitude)
     
-    PolarBear.fireRoomListEvents()
+    // PolarBear.fireRoomListEvents()
   },
 
   geoFailure: function(position) {
