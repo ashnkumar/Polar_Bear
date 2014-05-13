@@ -75,8 +75,9 @@ PB.Controllers.Room.prototype = {
     return geolocationOperations.getCentroid(userLocationArray)
   },
 
-  lockRoomPositionWithCentroid: function(roomName, lockedLocation) {
-    this.model.setLockedRoomLocation(roomName, lockedLocation)
-  }
+  // lockRoomPositionWithCentroid: function(roomName, lockedLocation) {
+  //   this.model.setLockedRoomLocation(roomName, lockedLocation)
+  //   var roomRadius = geolocationOperations.getNewRadius
+  // }
 
 }

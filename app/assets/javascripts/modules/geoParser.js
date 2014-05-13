@@ -35,7 +35,8 @@ var geoParser = (function(){
     
     var userLocation = [self.userInfo.userLatitude, self.userInfo.userLongitude]
     var roomLocation = [roomObject['roomLatitude'], roomObject['roomLongitude']]
-    return geolocationOperations.inRange(userLocation, roomLocation)
+    var roomRadius = [roomObject['roomRadius']]
+    return geolocationOperations.inRange(userLocation, roomLocation, roomRadius)
   }
 
   var _getRoomLocations = function(roomNames) {
@@ -44,8 +45,9 @@ var geoParser = (function(){
       var roomLatitude = _getRoomLatitude(roomNames[i])
       var roomLongitude = _getRoomLongitude(roomNames[i])
       var userCount = _getUserCount(roomNames[i])
+      var roomRadius = _getRoomRadius(roomNames[i])
 
-      roomLocationArray.push({name: roomNames[i], roomLatitude: roomLatitude, roomLongitude: roomLongitude, userCount: userCount})
+      roomLocationArray.push({name: roomNames[i], roomLatitude: roomLatitude, roomLongitude: roomLongitude, userCount: userCount, roomRadius: roomRadius})
     }
 
     return roomLocationArray
@@ -79,6 +81,15 @@ var geoParser = (function(){
     } 
 
     return userCount
+  }
+
+  var _getRoomRadius = function(roomName) {
+    var roomRadiusUrl = PB.firebaseUrlConstants.ROOM_LIST_PATH + roomName + '/radius'
+    var roomRadiusFB = firebaseFunctions.createFirebase(roomRadiusUrl)
+    var roomRadius = firebaseFunctions.getFirebaseValue(roomRadiusFB)
+    // debugger
+
+    return roomRadius
   }
 
   return {

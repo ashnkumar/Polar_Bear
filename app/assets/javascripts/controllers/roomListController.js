@@ -30,14 +30,6 @@ PB.Controllers.RoomList.prototype = {
     var $room = $(event.target)
     var roomName = $room.data('id')
     $.event.trigger("readyToMakeRoom", roomName)
-
-    
-    // var test = this.objectToArray(Object.userLocations)
-    // if(test.length < 3){
-    //   this.sendInfoToChatRoom(chatroom);
-    //   this.getInfoFromChatroom(chatroom);
-    // }
-    // this.sendUserToChatroom(chatroom)
   },
   // updateGeoLocation: function(e, eventData) {
   //   var firebaseUrl = ROOM_LIST_PATH + eventData.roomName + '/location'

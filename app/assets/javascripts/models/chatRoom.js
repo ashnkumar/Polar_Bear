@@ -13,6 +13,7 @@ PB.Models.Room.prototype = {
     if(newRoom) {
       this.setInitialRoomLocation(roomName)
       this.setRoomIcons(roomName)
+      this.setInitialRoomRadius(roomName)
     }
   },
 
@@ -28,6 +29,12 @@ PB.Models.Room.prototype = {
     longitudePath.set(Number(roomLong))
   },
 
+  setInitialRoomRadius: function(roomName) {
+    var roomRadiusUrl = PB.firebaseUrlConstants.ROOM_LIST_PATH + roomName + '/radius'
+    var roomRadiusFB = firebaseFunctions.createFirebase(roomRadiusUrl)
+    roomRadiusFB.set({radius: 0.5})
+  },
+
   setLockedRoomLocation: function(roomName, lockedLocation) {
     var roomListRoomPath = PB.firebaseUrlConstants.ROOM_LIST_PATH + roomName
 
@@ -36,7 +43,6 @@ PB.Models.Room.prototype = {
 
     var longitudePath = firebaseFunctions.createFirebase(roomListRoomPath + '/location/longitude')
     longitudePath.set(lockedLocation.longitude)
-    debugger
   },
 
   setRoomIcons: function(roomName) {

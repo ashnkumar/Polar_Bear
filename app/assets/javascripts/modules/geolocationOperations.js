@@ -30,8 +30,23 @@ var geolocationOperations = (function(){
     return centroid
   }
 
-  var _inRange = function (location1, location2) {
-    var acceptable_range = .5 // this is the range variable to set
+  var _getNewRadius = function(centroid, userLocations) {
+    var locationsLength = userLocations.length
+    var minimumRadius = .019 // sets a minimum radius for a room
+    for(var i = 0; i < locationsLength; i++) {
+      userLatFloat = parseFloat(userLocations[i].latitude)
+      userLongFloat = parseFloat(userLocations[i].longitude)
+      centroidLatFloat = parseFloat(centroid.latitude)
+      centroidLongFloat = parseFloat(centroid.longitude)
+      currentDistance = geoHelper.calculateDistance(userLatFloat, userLongFloat, centroidLatFloat, centroidLongFloat)
+      if (currentDistance > minimumRadius) {
+        minimumRadius = currentDistance}
+      }
+    return minimumRadius
+  }
+
+  var _inRange = function (location1, location2, roomRadius) {
+    var acceptable_range = roomRadius[0].radius
     var lat1 = location1[0]
     var lat2 = location2[0]
     var lon1 = location1[1]
@@ -43,6 +58,7 @@ var geolocationOperations = (function(){
   return {
     calculateDistance: _calculateDistance,
     inRange: _inRange,
-    getCentroid: _getCentroid
+    getCentroid: _getCentroid,
+    getNewRadius: _getNewRadius
   }
 }())
